@@ -14,8 +14,14 @@ public class DayEX1 {
 	  * 단, 성별은 남자와 여자만 있다고 가정.
 	  */
 	 boolean isMale = true;
+	 boolean isFemale = false;
 	 String gender = "male";
 	 int isMale2 = 13; //13이 남자, 24:여자라는 걸 기억해야 하는 불편함이 있다.
+	 System.out.println(isMale);
+	 System.out.println(isFemale);
+	 System.out.println(gender);
+	 
+	 
 	 
 	 
 	 
