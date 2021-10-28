@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ScannerEx2 {
 
 	public static void main(String[] args) {
-		/* 콘솔에서 두 정수를 입력받아 입력받은 정수들의 합과 나눈 결과를 구하는 코드를 작성하세요. */
+		/* 콘솔에서 두 정수를 입력받아 입력받은 정수들의 합과, 나눈 결과를 구하는 코드를 작성하세요. */
 		
 		
 		int num1, num2;
