@@ -1,27 +1,28 @@
 package day2;
 
 public class LogEx1 {
+
 	public static void main(String[] args) {
-		//&&¿¬»êÀÚ ¿¹Á¦. AÇĞÁ¡ ÆÇº°À» ÀÌ¿ë
+		//&&ì—°ì‚°ì ì˜ˆì œ. Aí•™ì  íŒë³„ì„ ì´ìš©
 		int score = 95;
-		//score°¡ 100Á¡ ÀÌÇÏÀÌ°í, score°¡ 90Á¡ ÀÌ»óÀÌ´Ù.
-		//score°¡ 100Á¡º¸´Ù ÀÛ°Å³ª °°°í, score°¡ 90Á¡º¸´Ù Å©°Å³ª °°´Ù.
+		//scoreê°€ 100ì ì´í•˜ì´ê³ , scoreê°€ 90ì  ì´ìƒì´ë‹¤.
+		//scoreê°€ 100ì ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ê³ , scoreê°€ 90ì ë³´ë‹¤ í¬ê±°ë‚˜ ê°™ë‹¤.
 		boolean isA = score <= 100 && score >= 90;
-		System.out.println(score + "Á¡Àº AÇĞÁ¡ÀÎ°¡?" + isA );
+		System.out.println(score + "ì ì€ Aí•™ì ì¸ê°€? " + isA);
 		
-		// ||¿¬»êÀÚ ¿¹Á¦. ½ÃÇè ÀÀ½Ã
-		//drierLicense, registrationCard°¡ trueÀÌ¸é ÀÖÀ½, false¸é ¾øÀ½
+		//||ì—°ì‚°ì ì˜ˆì œ. ì‹œí—˜ ì‘ì‹œ
+		//driverLicense, registrationCardê°€ trueì´ë©´ ìˆìŒ, falseì´ë©´ ì—†ìŒ
 		boolean driverLicense = true, registrationCard = true;
-		//¿îÀü¸éÇãÁõÀÌ ÀÖ°Å³ª ÁÖ¹Îµî·ÏÁõÀÌ ÀÖÀ¸¸é ÀÀ½Ã °¡´É
-		boolean testOk = driverLicense; || registrationCard;
-		System.out.println("½ÃÇè ÀÀ½Ã °¡´É?" + testOk);
+		//ìš´ì „ë©´í—ˆì¦ì´ ìˆê±°ë‚˜ ì£¼ë¯¼ë“±ë¡ì¦ì´ ìˆìœ¼ë©´ ì‘ì‹œ ê°€ëŠ¥
+		boolean testOk = driverLicense || registrationCard;
+		System.out.println("ì‹œí—˜ ì‘ì‹œ ê°€ëŠ¥? " + testOk);
 		
-		//!¿¬»êÀÚ ¿¹Á¦. ³²³à ±¸ºĞ
-		//isMaleÀÌ trueÀÌ¸é ³²ÀÚ. falseÀÌ¸é ¿©ÀÚ
-		boolean isMale = true;
-		System.out.println("³²ÀÚÀÎ°¡?" + isMale);
-		System.out.println("¿©ÀÚÀÎ°¡" + !isMale); 
-		//isA
-	
+		//!ì—°ì‚°ì ì˜ˆì œ. ë‚¨ë…€ êµ¬ë¶„
+		//isMaleì´ trueì´ë©´ ë‚¨ì. falseì´ë©´ ì—¬ì
+		boolean isMale = false;
+		System.out.println("ë‚¨ìì¸ê°€? " + isMale);
+		System.out.println("ì—¬ìì¸ê°€? " + !isMale);
+		//isA = score && score; //ì—ëŸ¬ ë°œìƒ. &&ì—°ì‚°ì ì–‘ ì˜†ì— ì¡°ê±´ì‹ì´ ì•„ë‹ˆê¸° ë•Œë¬¸ì—
+		
 	}
 }

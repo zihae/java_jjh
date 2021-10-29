@@ -5,36 +5,35 @@ import java.util.Scanner;
 public class ScannerEx1 {
 
 	public static void main(String[] args) {
-		//ÄÜ¼Ö¿¡¼­ ÀÔ·Â ¹ŞÀ» ¼ö ÀÖ°Ô Scanner¸¦ »ı¼º. »ı¼ºµÈ ScannerÀÇ ÀÌ¸§Àº scan
-		Scanner scan = new Scanner(System.in); 
+		//ì½˜ì†”ì—ì„œ ì…ë ¥ ë°›ì„ ìˆ˜ ìˆê²Œ Scannerë¥¼ ìƒì„±. ìƒì„±ëœ Scannerì˜ ì´ë¦„ì€ scan
+		Scanner scan = new Scanner(System.in);
 		
-		System.out.print("Á¤¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä : "); 
+		System.out.print("ì •ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
 		int num1 = scan.nextInt();
-		System.out.println("ÀÔ·ÂµÈ Á¤¼ö´Â " + num1 + " ÀÔ´Ï´Ù.");
+		System.out.println("ì…ë ¥ëœ ì •ìˆ˜ëŠ” " + num1 + " ì…ë‹ˆë‹¤.");
 		
-		System.out.print("½Ç¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
+		System.out.print("ì‹¤ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
 		double num2 = scan.nextDouble();
-		System.out.println("ÀÔ·ÂµÈ ½Ç¼ö´Â " + num2 + " ÀÔ´Ï´Ù.");
+		System.out.println("ì…ë ¥ëœ ì‹¤ìˆ˜ëŠ” " + num2 + " ì…ë‹ˆë‹¤.");
 		
-		System.out.print("¹®ÀÚ¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
+		System.out.print("ë¬¸ìë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
 		char ch1 = scan.next().charAt(0);
-		System.out.println("ÀÔ·ÂµÈ ¹®ÀÚ´Â " + ch1 + " ÀÔ´Ï´Ù.");
+		System.out.println("ì…ë ¥ëœ ë¬¸ìëŠ” " + ch1 + " ì…ë‹ˆë‹¤.");
 		
-		//next() : °ø¹éÀ» Á¦¿ÜÇÑ ÇÑ ´Ü¾î¸¦ ÀĞ¾î¿È.
-		System.out.print("´Ü¾î¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+		//next() : ê³µë°±ì„ ì œì™¸í•œ í•œ ë‹¨ì–´ë¥¼ ì½ì–´ì˜´.
+		System.out.print("ë‹¨ì–´ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
 		String str1 = scan.next();
-		System.out.println("ÀÔ·ÂµÈ ´Ü¾î´Â " + str1 + " ÀÔ´Ï´Ù.");
+		System.out.println("ì…ë ¥ëœ ë‹¨ì–´ëŠ” " + str1 + " ì…ë‹ˆë‹¤.");
 		
 		scan.nextLine();
 		
-		//nexLine() : °ø¹éÀ» Æ÷ÇÔÇÑ ÇÑ ¶óÀÎÀ» ÀĞ¾î¿È.
-		System.out.println("¹®ÀåÀ» ÀÔ·ÂÇÏ¼¼¿ä : ");
+		//nextLine() : ê³µë°±ì„ í¬í•¨í•œ í•œ ë¼ì¸ì„ ì½ì–´ì˜´.
+		System.out.print("ë¬¸ì¥ì„ ì…ë ¥í•˜ì„¸ìš” : ");
 		String str2 = scan.nextLine();
-		System.out.println("ÀÔ·ÂµÈ ¹®ÀåÀº" + str2 + " ÀÔ´Ï´Ù.");
+		System.out.println("ì…ë ¥ëœ ë¬¸ì¥ì€ " + str2 + " ì…ë‹ˆë‹¤.");
 		
-		//´õÀÌ»ó Å«¼Ö¿¡¼­ ÀÔ·Â ¹ŞÀ» ³»¿ëÀÌ ¾øÀ¸¸é Scanner »ç¿ëÀ» Á¾·á
+		//ë”ì´ìƒ ì½˜ì†”ì—ì„œ ì…ë ¥ ë°›ì„ ë‚´ìš©ì´ ì—†ìœ¼ë©´ Scanner ì‚¬ìš©ì„ ì¢…ë£Œ
 		scan.close();
-
 	}
 
 }

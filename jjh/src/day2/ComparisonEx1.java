@@ -3,24 +3,20 @@ package day2;
 public class ComparisonEx1 {
 
 	public static void main(String[] args) {
-		//¼ºÀÎ ÆÇº°ÇÏ´Â ¿¹Á¦.
-		//³ªÀÌ´Â ¸¸ ³ªÀÌ¶ó°í °¡Á¤. ¼ºÀÎÀº ¸¸ 19¼¼ ÀÌ»ó
+		//ì„±ì¸ íŒë³„í•˜ëŠ” ì˜ˆì œ.
+		//ë‚˜ì´ëŠ” ë§Œ ë‚˜ì´ë¼ê³  ê°€ì •. ì„±ì¸ì€ ë§Œ 19ì„¸ ì´ìƒ
 		int age = 15;
-		boolean isAudult = age >= 19;
+		boolean isAdult = age >= 19;
 		
+		System.out.println(age + "ì‚´ì€ ì„±ì¸ì¸ê°€? " + isAdult);
 		
-		System.out.println(age + "»ìÀº ¼ºÀÎÀÎ°¡?" + isAudult);
-		
-		//num1ÀÌ Â¦¼öÀÌ¸é isEvenÀÌ true°¡, È¦¼öÀÌ¸é isEvenÀÌ false°¡ µÇµµ·Ï ÄÚµå¸¦ ÀÛ¼ºÇØº¸¼¼¿ä.
-		
-		int num1 = 11;
-		//num1À» 2·Î ³ª´©¾úÀ» ¶§ ³ª¸ÓÁö°¡ 0°ú °°´Ù.
-		boolean isEven  = num1 % 2 ==0;
+		//num1ì´ ì§ìˆ˜ì´ë©´ isEvenì´ trueê°€, í™€ìˆ˜ì´ë©´ isEvenì´ falseê°€ ë˜ë„ë¡ ì½”ë“œë¥¼
+		//ì‘ì„±í•´ë³´ì„¸ìš”.
+		int num1 = 12;
+		//num1ì„ 2ë¡œ ë‚˜ëˆ„ì—ˆì„ ë•Œ ë‚˜ë¨¸ì§€ê°€ 0ê³¼ ê°™ë‹¤.
+		boolean isEven = num1 % 2 == 0;
 		boolean isOdd = num1 % 2 != 0; //!isEven
-				
-		System.out.println(num1  + "Àº Â¦¼öÀÎ°¡ ? " + isEven);
-		System.out.println(num1  + "Àº È¦¼öÀÎ°¡ ? " + isOdd);
-		
+		System.out.println(num1 + "ì€ ì§ìˆ˜ì¸ê°€ ? " + isEven);
+		System.out.println(num1 + "ì€ í™€ìˆ˜ì¸ê°€ ? " + isOdd);
 	}
-
 }

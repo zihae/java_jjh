@@ -5,28 +5,20 @@ import java.util.Scanner;
 public class ScannerEx2 {
 
 	public static void main(String[] args) {
-		/* ÄÜ¼Ö¿¡¼­ µÎ Á¤¼ö¸¦ ÀÔ·Â¹Ş¾Æ ÀÔ·Â¹ŞÀº Á¤¼öµéÀÇ ÇÕ°ú, ³ª´« °á°ú¸¦ ±¸ÇÏ´Â ÄÚµå¸¦ ÀÛ¼ºÇÏ¼¼¿ä. */
-		
-		
+		/* ì½˜ì†”ì—ì„œ ë‘ ì •ìˆ˜ë¥¼ ì…ë ¥ë°›ì•„ ì…ë ¥ë°›ì€ ì •ìˆ˜ë“¤ì˜ í•©ê³¼ ë‚˜ëˆˆ ê²°ê³¼ë¥¼ êµ¬í•˜ëŠ” ì½”ë“œë¥¼ ì‘ì„±í•˜ì„¸ìš”. */
 		int num1, num2;
-		System.out.print("µÎ Á¤¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä (¿¹: 1 2) : ");
+		System.out.print("ë‘ ì •ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”(ì˜ˆ:1 2) : ");
 		Scanner scan = new Scanner(System.in);
 		
-		num1 =scan.nextInt();
-		num2 =scan.nextInt();
+		num1 = scan.nextInt();
+		num2 = scan.nextInt();
 		
-		int result1 = num1 + num2;
-		double result2 = num1 / (double) num2;
+		int res1 = num1 + num2;
+		double res2 = num1 / (double)num2;
 		
-		
-		
-		System.out.println(num1 + "+" + num2 + "=" + result1);
-		System.out.println(num1 + "/" + num2 + "=" + result2);
-		
-		
+		System.out.println(num1 + " + " + num2 + " = " + res1);
+		System.out.println(num1 + " / " + num2 + " = " + res2);
 		
 		scan.close();
-
 	}
-
 }

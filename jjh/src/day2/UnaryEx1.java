@@ -1,20 +1,22 @@
 package day2;
 
 public class UnaryEx1 {
-	
 
 	public static void main(String[] args) {
-		int num1 =10, num2 = 10;
-		System.out.println("Áõ°¡ Àü: num1 = " + num1 + ", num2 = " + num2 );
-		//num1Àº ÀüÀ§Çü Áõ°¡¿¬»êÀÚ¸¦ ÀÌ¿ë, num2´Â ÈÄÀ§Çü Áõ°¡¿¬»êÀÚ¸¦ ÀÌ¿ë
-		System.out.println("Áõ°¡ Áß: num1 = " + num1 + ", num2 = " + num2++ );
-		System.out.println("Áõ°¡ ÈÄ: num1 = " + num1 + ", num2 = " + num2 );
-		
-		++num1; // 13¹øÂ°ÁÙ ÄÚµå¿Í °°Àº ÄÚµåµénum1++, num1 = num1 + 1, num1 += 1
-		//num2¸¦ 1¼ø Áõ°¡
+		int num1 = 10, num2 = 10;
+		System.out.println("ì¦ê°€ ì „ : num1 = " + num1 + ", num2 = " + num2);
+		//num1ì€ ì „ìœ„í˜• ì¦ê°€ì—°ì‚°ìë¥¼ ì´ìš©, num2ëŠ” í›„ìœ„í˜• ì¦ê°€ì—°ì‚°ìë¥¼ ì´ìš©\
+		//num1ì„ 1 ì¦ê°€í•˜ê³  ì•ì˜ ë¬¸ìì—´ê³¼ ë”í•¨
+		//num2ëŠ” ë¬¸ìì—´ê³¼ ë”í•œ í›„ì— num2ë¥¼ 1 ì¦ê°€
+		System.out.println("ì¦ê°€ ì¤‘ : num1 = " + ++num1 + ", num2 = " + num2++);
+		System.out.println("ì¦ê°€ í›„ : num1 = " + num1 + ", num2 = " + num2);
+		//num1ì„ 1 ì¦ê°€
+		++num1; //14ë²ˆì§¸ì¤„ ì½”ë“œì™€ ê°™ì€ ì½”ë“œë“¤ : num1++, num1 = num1 + 1, num1 += 1
+		//num2ë¥¼ 1 ì¦ê°€
 		num2++;
-		//
-		System.out.println("Áõ°¡ ÈÄ2: num1 =" + num1 + ", num2 = " + num2);
+		//12,12
+		System.out.println("ì¦ê°€ í›„2: num1 = " + num1 + ", num2 = " + num2);
+		
 	}
 
 }

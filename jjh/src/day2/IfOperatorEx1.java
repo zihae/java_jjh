@@ -3,17 +3,17 @@ package day2;
 public class IfOperatorEx1 {
 
 	public static void main(String[] args) {
-		//Á¶°Ç ¼±ÅÃ¿¬»êÀÚ¸¦ ÀÌ¿ëÇÑ AÇĞÁ¡ È®ÀÎ, ÂüÀÏ ¶§ Y °ÅÁşÀÏ ¶§ N
+		//ì¡°ê±´ ì„ íƒì—°ì‚°ìë¥¼ ì´ìš©í•œ Aí•™ì  í™•ì¸, ì°¸ì¼ ë•Œ Y ê±°ì§“ì¼ ë•Œ N
 		int score = 95;
 		char isA = ((score <= 100) && (score >= 90)) ? 'Y' : 'N';
 		
-		System.out.println(score + "Á¡Àº AÇĞÁ¡ÀÎ°¡¿ä?" + isA);
+		System.out.println(score + "ì ì€ Aí•™ì ì¸ê°€ìš”?" + isA);
 		
-		//num1ÀÌ È¦¼öÀÎ°¡·Î ¹°¾îº¸¸é È¦¼öÀÌ¸é yes¸¦ Â¦¼öÀÌ¸é noÀ» Ãâ·ÂÇÏ´Â ÄÚµå¸¦ ÀÛ¼ºÇÏ¼¼¿ä.
+		//num1ì´ í™€ìˆ˜ì¸ê°€ë¡œ ë¬¼ì–´ë³´ë©´ í™€ìˆ˜ì´ë©´ yesë¥¼ ì§ìˆ˜ì´ë©´ noì„ ì¶œë ¥í•˜ëŠ” ì½”ë“œë¥¼ ì‘ì„±í•˜ì„¸ìš”.
 		int num1 = 10;
 		String isOdd = num1 % 2 != 0 ? "yes" : "no";  
 		
-		System.out.println(num1 + "Àº È¦¼öÀÎ°¡¿ä?" + isOdd);
+		System.out.println(num1 + "ì€ í™€ìˆ˜ì¸ê°€ìš”?" + isOdd);
 	}
 
 }

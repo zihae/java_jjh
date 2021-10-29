@@ -4,21 +4,21 @@ public class AssignmentEx1 {
 
 	public static void main(String[] args) {
 		int num1 = 10, num2 = 20;
-		num1 = num2; // num2¿¡ ÀÕ´Â 20À» num1¿¡ ÀúÀå (µ¤¾î¾¸), num1Àº 20ÀÌµÊ
+		num1 = num2; // num2ì— ì‡ëŠ” 20ì„ num1ì— ì €ì¥ (ë®ì–´ì”€), num1ì€ 20ì´ë¨
 		System.out.println("num1 = " + num1 + ", num2 =" + num2);
 		
 		num1 = 10;
 		num2 =20;
 		
-		num2 = num1; //num1¿¡ ÀÖ´Â 10À» num2¿¡ ÀúÀå (µ¤¾î¾¸), num2´Â 10ÀÌµÊ
+		num2 = num1; //num1ì— ìˆëŠ” 10ì„ num2ì— ì €ì¥ (ë®ì–´ì”€), num2ëŠ” 10ì´ë¨
 		System.out.println("num1 = " + num1 + ", num2 =" + num2);
 		
-		num1 = num1 + num2; //num1¿¡ ÀÕ´Â 10°ú num2¿¡ ÀÕ´Â 10À» ´õÇØ¼­ num1¿¡ ÀúÀå
+		num1 = num1 + num2; //num1ì— ì‡ëŠ” 10ê³¼ num2ì— ì‡ëŠ” 10ì„ ë”í•´ì„œ num1ì— ì €ì¥
 		System.out.println("num1 = " + num1 + ", num2 =" + num2);
 		
 				
-		//num1 + num2 = num1; // ¿¡·¯ ¹ß»ı, ´ëÀÔ ¿¬»êÀÚ ¿ŞÂÊ¿¡´Â º¯¼ö 1°³¸¸ ¿Í¾ß ÇÑ´Ù. (»ó¼ö Æ÷ÇÔ)
-		//num1 + 1 = num1; //¿¡·¯ ¹ß»ı
+		//num1 + num2 = num1; // ì—ëŸ¬ ë°œìƒ, ëŒ€ì… ì—°ì‚°ì ì™¼ìª½ì—ëŠ” ë³€ìˆ˜ 1ê°œë§Œ ì™€ì•¼ í•œë‹¤. (ìƒìˆ˜ í¬í•¨)
+		//num1 + 1 = num1; //ì—ëŸ¬ ë°œìƒ
 
 	}
 
