@@ -3,7 +3,7 @@ package day3;
 import java.util.Scanner;
 
 public class IfMultipleEx4 {
-
+//이중 if문을 이용해서
 	public static void main(String[] args) {
 		/* 정수를 입력 받고,
 		 * 정수가 2의 배수이면 2의 배수라고 출력,
@@ -18,14 +18,16 @@ public class IfMultipleEx4 {
 		System.out.print("정수를 입력하세요 :");
 		int num = scan.nextInt(); 
 		
-		if(num % 2 == 0 && num % 3 !=0 ) {
-			System.out.println("" + num + "는 2의 배수입니다");
-			//3의 배수는 포함 시키지 않음으로서 6의 배수를 미포함
-		}else if(num % 3 == 0 && num % 2 !=0){
+		if(num % 2 == 0) {
+			if(num % 3 == 0) {
+				System.out.println(num + "는 6의 배수입니다.");
+			}
+			else {
+				System.out.println(num + "는 2의 배수입니다.");	
+			}
+		}else if(num % 3 == 0 ){
 			System.out.println("" + num + "는 3의 배수입니다");
-			//2의 배수는 포함 시키지 않음으로서 6의 배수를 미포함
-		}else if(num % 6 == 0) {
-			System.out.println("" + num + "는 6의 배수입니다");
+			
 		}else 
 			System.out.println("" + num + "는 2,3,6의 배수가 아닙니다");
 				
