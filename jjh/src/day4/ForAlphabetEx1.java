@@ -5,7 +5,7 @@ public class ForAlphabetEx1 {
 	public static void main(String[] args) {
 		/* 문자에 숫자를 더하면?? 
 		 * 문자와 숫자를 더하면 문자에 맞는 유니코드값에서 1을 더한다.
-		 * 'a'는 코드값이 9이고, 'a'에 1을 더한 값은 98이 된다
+		 * 'a'는 코드값이 97이고, 'a'에 1을 더한 값은 98이 된다
 		 * 이 값을 문자로 변환하면 해당 유니코드값에 맞는 문자 'b'가 된다.*/
 		char ch1 = 'a';
 		int num = 1;
