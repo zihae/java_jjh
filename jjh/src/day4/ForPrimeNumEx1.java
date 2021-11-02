@@ -24,7 +24,7 @@ public class ForPrimeNumEx1 {
 		
 		int i, count;
 		for(i =1, count = 0 ; i <= num1; i++) {
-			if(num1 % 1 == 0) {
+			if(num1 % i == 0) {
 				count ++; // ++count;// count = count + 1; // count += 1;
 				
 			}
