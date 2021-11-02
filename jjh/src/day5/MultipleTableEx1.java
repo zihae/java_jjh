@@ -4,7 +4,7 @@ public class MultipleTableEx1 {
 
 	public static void main(String[] args) {
 		/* 2단에서 9단까지 구구단을 출력하는 코드를 작성하세요.
-		 * 7단 코드를 가져와서 생각
+		 * 7단 코드를 가져와서 생각.
 		 
 		
 		 */
