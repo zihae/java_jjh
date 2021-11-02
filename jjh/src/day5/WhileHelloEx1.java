@@ -10,7 +10,7 @@ public class WhileHelloEx1 {
 		 */
 		
 		int i = 1; //1. 초기화
-		while(i<=5) {
+		while(i<=5) {//2. 조건식
 			System.out.println("Hello"); //실행문 - 3.실행문
 			i++;// 실행문 - 4.증강식
 				}
