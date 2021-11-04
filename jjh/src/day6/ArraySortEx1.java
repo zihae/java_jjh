@@ -21,7 +21,7 @@ public class ArraySortEx1 {
 		for( int i =0; i<num.length-1; i++) {
 			for(int j = 0; j< num.length -1; j++) {
 				if(num[j]>num[j+1]) {
-					//두 값의 위치를 바꾸는 코드 (중요)
+					//두 값의 위치를 바꾸는 코드 아래(중요)
 					int tmp = num[j];
 					num[j] = num[j+1];
 					num[j+1] = tmp;
