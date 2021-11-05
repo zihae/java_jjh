@@ -8,7 +8,7 @@ public class LottoEx1 {
 	public static void main(String[] args) {
 		//1. 1~45 사이의 중복되지 않은 6개의 로또 번호와 1개의 보너스 번호를 생성
 
-		int min = 1, max = 15;
+		int min = 1, max = 45;
 		int [] lotto = randomArray(min,max,6);
 		//당첨번호와 중복되지 않게 보너스 번호를 랜덤으로 생성하여 저장
 		int bonus = createBonus(min, max, lotto);
@@ -69,7 +69,8 @@ public class LottoEx1 {
 		return arr;
 	}
 	
-	/* 기능: 최소값(min), 최대값(max) 배열이 주어지면 min~max 사이의 랜덤한 수를 생성하여 배열에 있는지 없는지 확인한 후 없으면 해당 수를 알려주는 메소드
+	/* 기능: 최소값(min), 최대값(max) 배열이 주어지면 min~max 사이의 랜덤한 수를 생성하여 배열에 있는지 없는지 확인한 후 
+	 * 없으면 해당 수를 알려주는 메소드
 	 * 매개변수: 최소값, 최대값, 배열 => int min, int max, int [] arr
 	 * 리턴타입: 배열에 없는 min~max 사이의 랜덤한 수 => 정수 => int
 	 * 메소드명: createBonus
