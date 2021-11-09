@@ -1,5 +1,6 @@
 package day10;
 
+import java.util.Random;
 
 public class ClassStaticEx1 {
 
@@ -20,6 +21,11 @@ public class ClassStaticEx1 {
 			System.out.println("t2 클래스 변수 num1 : " + t2.num2);
 			System.out.println(Math.E);
 			System.out.println(Math.PI);
+			//0~10사이의 랜덤한 실수를 알려주는 클래스 메소드
+			System.out.println(Math.random());
+			Random r = new Random();
+			//0에서 10미만의 랜덤한 정수를 알려주는 객체 메소드
+			System.out.println(r.nextInt(10));
 		
 	}
 
