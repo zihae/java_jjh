@@ -15,7 +15,7 @@ interface ExdTvRemoteController extends ExdRemoteController {
 
 class ExdTvRemoteCon implements ExdTvRemoteController{
 	
-	private boolean power = false; //TV전원 상태 초기값 = 꺼져있음(flase)
+	private boolean power = false; //TV전원 상태 초기값 = 꺼져있음(false)
 	private int channel = 1; //채널 초기값 = 1번
 	private int volume = 0;
 	private int maxChannel = 999;
