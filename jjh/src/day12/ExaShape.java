@@ -12,7 +12,7 @@ public class ExaShape {
 	protected int left, top; //왼쪽 위점
 	protected int right, bottom; //오른쪽 아래점
 	//도형을 그릴 때 대각선점 2개가 필요
-	//그림판에서 그리는 거기 때문에 top <bottom의 좌표값이 크다
+	//그림판에서 그리는 거기 때문에 top 보다 bottom의 좌표값이 크다
 	public ExaShape(int x1, int y1, int x2, int y2) {
 		left = x1 <x2 ? x1 :x2;
 		right = x1 < x2 ? x2 : x1;
@@ -42,7 +42,7 @@ public class ExaShape {
 	public int getHeight() {
 		return bottom -top;
 	}
-	//도형은 위치를 이동시킬 수 있다. (왼쪽 위의 점) //아래 코드 순서가 중요! 저대로 안쓰면 크기 변화가 됨
+	//도형은 위치를 이동시킬 수 있다. (왼쪽 위의 점) //아래 코드 순서가 중요! 저대로 안쓰면 크기 변환됨
 	public void move(int left, int top) {
 		this.right = left + getWidth();
 		this.bottom = top + getHeight();
