@@ -4,7 +4,7 @@ public class ExfEllipse extends ExfShape {
 
 	@Override
 	public void draw() {
-		System.out.println("사각형");
+		System.out.println("타원");
 		
 	}
 	public ExfEllipse(int x1, int y1, int x2, int y2) {
