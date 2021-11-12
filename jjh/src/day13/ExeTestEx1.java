@@ -2,8 +2,7 @@ package day13;
 
 public class ExeTestEx1 {
 
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {		
 
 	}
 
