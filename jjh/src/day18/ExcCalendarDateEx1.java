@@ -9,7 +9,7 @@ public class ExcCalendarDateEx1 {
 		/* Calendar를 Date로 */
 		Calendar cal = Calendar.getInstance();
 		
-		Date date = new Date(cal.getTimeInMillis()); //현재시간을 밀리세컨드로 변환
+		Date date = new Date(cal.getTimeInMillis()); //현재시간을 밀리세컨드로 변환.
 		System.out.println(date);
 		
 		/* Date를 Calendar로 */
