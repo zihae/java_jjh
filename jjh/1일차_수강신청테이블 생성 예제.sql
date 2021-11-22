@@ -12,6 +12,7 @@ CREATE TABLE course(
     constraint foreign key(co_st_num) references student(st_num));
 
     explain course;
+    
 -- 강의 테이블(lecture)
 CREATE TABLE lecture(
 	le_num INT AUTO_INCREMENT,
