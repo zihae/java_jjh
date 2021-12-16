@@ -62,7 +62,11 @@
 /* 중간 메뉴 박스 */
 .menu-box{
 	height: 52px; border-top: 1px solid #e4e8eb;
-	box-shadow: 0 1px 3px 0 rgb(0 0 0 / 12%);
+	box-shadow: 0 1px 3px 0 rgb(0 0 0 / 12%); position: relative;
+}
+.menu-box .service-box{
+	position: absolute; left: 0; right: 0; top:53px; height: 400px;
+	background-color: #fff; background-color: gray;  z-index: 4; display: none;
 }
 .menu-container-box{
 	height: 100%;
@@ -416,6 +420,17 @@
 .contents-l-box3 .group-container{
 	position: relative;
 }
+
+/* 이전,다음 버튼 */
+.contents-l-box3 .btn-box .btn-prev,
+.contents-l-box3 .btn-box .btn-next{
+	position: absolute; width: 40px; height: 40px; z-index: 3; background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+	background-size: 444px 439px; background-position: -128px -352px; top: 6px; left: -23px;
+}
+
+.contents-l-box3 .btn-box .btn-next{
+	left: auto; right: -23px; background-position: -86px -352px;
+}
 /* 오른쪽 박스 */
 .contents-r-box{
 	width: 350px; height: 1000px;  float: right;
@@ -490,25 +505,7 @@
 	overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
 }
 
-/* 이전,다음 버튼 */
-.group-container > .btn-box{
-	width: 47px; height: 24px; position: absolute; top: 11px; right: 10px;
-}
-.group-container > .btn-box > .prev-button,
-.group-container > .btn-box > .next-button{
-	width: 24px; height: 24px; box-sizing: border-box; border: 1px solid #e4e8eb; 
-	text-align: center; display: block; float: left;
-}
-.group-container > .btn-box > .next-button{
-	margin-left: -1px;
-}
-.group-container > .btn-box i{
-	font-size: 20px; color: gray; line-height: 23px;
-}
-.group-container > .btn-box > .prev-button:hover i,
-.group-container > .btn-box > .next-button:hover i{
-	color: red;
-}
+
 
 /* 푸터 박스 */
 .footer-box{
