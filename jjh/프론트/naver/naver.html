@@ -582,7 +582,7 @@
 					<a href="#" class="next-btn"><i class="fas fa-angle-right"></i></a>
 				</div>
 			</div>
-		</div>
+		</div> 
 	</div>
 	<footer class="footer-box container"></footer>
 	<!-- 더보기/접기 버튼 클릭 -->
@@ -620,7 +620,7 @@
 			$('.contents-l-box3 .category-link').removeClass('sel');
 			$(this).addClass('sel');
 		});
-
+		/*
 		var min3 = 0, max3 = 1;
 		var num3 = min3;
 
@@ -633,7 +633,7 @@
 			}
 			$('.contents-l-box3 .main-category').animate({marginLeft:-750 * num3});
 		});
-
+		*/
 		//메뉴 탭 이동
 		//메뉴 클릭 
 		var menuSelector = '.contents-l-box3 .category-item';
@@ -676,7 +676,7 @@
 			}
 		});
 		//다음버튼
-		$('.btn-next').click(function(e){
+		$('.contents-l-box3 .btn-next').click(function(e){
 			e.preventDefault();
 			if( $(menuSelector+' .sel').parent().next().length == 1){
 				$(menuSelector+' .sel').parent().next().click();
@@ -685,7 +685,7 @@
 				if($(menuSelector+' .sel').parents('.category-list').next().length == 1){
 					$(menuSelector+' .sel').parents('.category-list').next().children().first().click();
 					var width = $('.contents-l-box3 .category-item.sel').parent().width();
-					$('.container-menu').animate({'margin-left':'-'+width+'px'},500);
+					$('.main-category').animate({'margin-left':'-'+width+'px'},500);
 				}
 			}
 		});
