@@ -19,6 +19,4 @@ public class MemberVO {
 			public String toString() {
 				return "MemberVO [id=" + id + ", pw=" + pw + "]";
 			}
-			
-			
 }

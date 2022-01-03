@@ -17,7 +17,6 @@ import kr.green.spring.vo.MemberVO;
 @Controller
 public class HomeController {
 	
-
 	//URI를 확인하는 곳, 필수 
 	//value는 localhost:8080/패키지명을 제외한 부분
 	//method는 전달 방식: GET,POST 생략하면 둘다
