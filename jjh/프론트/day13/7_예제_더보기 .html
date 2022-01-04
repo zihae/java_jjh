@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>더보기 예제 </title>
+    <script src="../js/jquery.min.js"></script>
+    <style>
+       img{width: 250px; object-fit: fill;}
+    </style>
+</head>
+<body>
+    <div class="img-container">
+        <div class="box">
+            1<img src="../day1/img/다운로드.jpg" alt="강아지" height="100">
+        </div>
+        <button class="btn">더보기</button>
+    </div>
+   
+    <script>
+        var num = 1; //이미지가 순서대로 잘 나오는지 확인하기 위해서 추가한 코드 
+        $('.btn').click(function(){
+            ++num;
+            var str =
+            '<div class="box">' +
+             num + '<img src="../day1/img/다운로드.jpg" alt="강아지" height="100">' +
+            '</div>';
+            $(this).before(str);
+        });
+    </script>
+</body>
+</html>
