@@ -1,7 +1,7 @@
-/*
+
 CREATE SCHEMA `community` ;
 USE community;
-*/
+
 CREATE TABLE `member` (
 	`me_id`	VARCHAR(20)	NOT NULL,
 	`me_pw`	VARCHAR(255)	NULL,
