@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.spring.service.MemberService;
 import kr.green.spring.vo.MemberVO;
-//@Controller가 있어야 URL을 분석하여 처리
+//@Controller가 있어야 URI을 분석하여 처리
 @Controller
 public class HomeController {
 	
@@ -38,6 +38,20 @@ public class HomeController {
 		System.out.println("/login:post :" + member);
 		memberService.login(member);
 		mv.setViewName("/member/login");
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public ModelAndView signupGet(ModelAndView mv, MemberVO member) {
+		memberService.login(member);
+		mv.setViewName("/member/signup");
+		return mv;
+	}
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	public ModelAndView signupPost(ModelAndView mv, MemberVO member) {
+		memberService.login(member);
+		mv.setViewName("/member/signup");
 		return mv;
 	}
 }
