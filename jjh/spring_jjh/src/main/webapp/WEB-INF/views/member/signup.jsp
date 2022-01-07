@@ -43,12 +43,12 @@
 		<div class="form-group">
 			<div class="form-check-inline">
 				<label class="form-check-label">
-					<input type="radio" class="form-check-input" name="me_gender" value="남성">남성
+					<input type="radio" class="form-check-input" name="me_gender" value="Male">남성
 				</label>
 			</div>
 			<div class="form-check-inline">
 				<label class="form-check-label">
-					<input type="radio" class="form-check-input" name="me_gender" value="여성">여성
+					<input type="radio" class="form-check-input" name="me_gender" value="Female">여성
 				</label>
 			</div>
 		</div>

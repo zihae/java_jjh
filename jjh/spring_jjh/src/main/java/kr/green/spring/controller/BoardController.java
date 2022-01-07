@@ -25,7 +25,7 @@ public class BoardController {
 	@RequestMapping(value="/list")
 	public ModelAndView boardList(ModelAndView mv) {
 		//등록된 모든 게시글을 보는 작업
-		List<BoardVO> list = boardService.getBoardList("일반");
+		List<BoardVO> list = boardService.getBoardList("Normal");
 		System.out.println(list);
 		mv.addObject("list", list);
 		mv.setViewName("/board/list");
@@ -41,7 +41,7 @@ public class BoardController {
 		//회원정보 가져오기
 		MemberVO user= (MemberVO)request.getSession().getAttribute("user");
 		board.setBd_me_id(user.getMe_id());
-		board.setBd_type("일반");
+		board.setBd_type("Normal");
 		System.out.println(board);
 		boardService.registerBoard(board);
 		mv.setViewName("/board/register");
