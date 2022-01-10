@@ -44,7 +44,7 @@ public class BoardServiceImp implements BoardService {
 
 	@Override
 	public void deleteBoard(Integer bd_num, MemberVO user) {
-		//유효하지 않은 게시글 번호이면 삭제할 필요 없음 
+		//유효하 지 않은 게시글 번호이면 삭제할 필요 없음 
 		//번호가 null이거나 음수,0인 경우 
 		if(bd_num == null || bd_num <=0)
 			return;
@@ -67,5 +67,19 @@ public class BoardServiceImp implements BoardService {
 		board.setBd_del_date(new Date());
 		boardDao.updateBoard(board);
 		*/
+	}
+
+	@Override
+	public BoardVO getBoard(Integer bd_num, MemberVO user) {
+		// 게시글 번호가 유효한지 체크 => 번호가 없거나 0이하이면 작업할 필요 없다
+ 		if(bd_num == null || bd_num <= 0)
+ 			return null;
+		//다오에게 게시글을 가져오라고 시킴
+		//게시글 = 다오.게시글가져옴(게시글 번호);
+ 		BoardVO board = boardDao.getBoard(bd_num);
+		//가져온 게시글이 있으면 작성자와 user와 비교하여 같은 아이디인지 체크
+		if(board == null || !board.getBd_me_id().equals(user.getMe_id()))
+			 return null;
+			return board;
 	}
 }
