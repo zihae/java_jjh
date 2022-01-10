@@ -20,4 +20,6 @@ public interface BoardService {
 
 	BoardVO getBoard(Integer bd_num, MemberVO user);
 
+	void updateBoard(BoardVO board);
+
 }

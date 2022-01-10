@@ -101,5 +101,17 @@ public class BoardController {
 		mv.setViewName("/board/modify");
 		return mv;		
 	}
+	@RequestMapping(value="/modify",method=RequestMethod.POST)
+	public ModelAndView boardModifyPost(ModelAndView mv, BoardVO board) {
+		//화면에서 수정한 게시글 정보가 넘어오는지 확인
+		System.out.println("게시글 : " + board);
+		//서비스에게 게시글 정보를 주면서 업데이트하라고 시킴
+		//서비스.게시글업데이트(게시글 정보)
+		boardService.updateBoard(board);
+		//게시글 번호를 넘겨줌
+		mv.addObject("bd_num",board.getBd_num());
+		mv.setViewName("redirect:/board/detail");
+		return mv;	
+	}
 	
 }
