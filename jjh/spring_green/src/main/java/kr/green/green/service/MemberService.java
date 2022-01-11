@@ -1,5 +1,8 @@
 package kr.green.green.service;
 
+import kr.green.green.vo.MemberVO;
+
 public interface MemberService {
-	public String getMember(String me_id);
+
+	boolean signup(MemberVO user);
 }
