@@ -20,7 +20,7 @@ public class MemberServiceImp implements MemberService{
 		if(member == null || member.getMe_id() == null)
 		return null;
 		MemberVO user = memberDao.getMember(member.getMe_id());
-		//로그인에 성공하면 회원정보를 실패하면 null을 반환 
+		//로그인에 성공하면 회원정보를, 실패하면 null을 반환 
 		if(user == null)
 			return null;
 		//matches(원래 비번, 암호화된 비번) : 같으면(비번이 맞으면) true 다르면 false

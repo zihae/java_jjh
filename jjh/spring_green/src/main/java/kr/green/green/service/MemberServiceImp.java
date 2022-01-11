@@ -34,4 +34,17 @@ public class MemberServiceImp implements MemberService {
 		return true;
 	}
 
+	@Override
+	public MemberVO login(MemberVO user) {
+		if(user == null || user.getMe_id() == null || user.getMe_id().trim().length() == 0)
+			return null;
+		//데이터베이스에서 데이터 가져옴
+		MemberVO dbUser = memberDao.selectMember(user.getMe_id());
+		if(dbUser == null)
+			return null;
+		if(!passwordEncoder.matches(user.getMe_pw(),dbUser.getMe_pw()))
+			return null;
+		return dbUser;
+	}
+
 }
