@@ -7,5 +7,8 @@
 		SELECT * FROM board WHERE bd_type = #{bd_type} AND bd_del = 'N'
 		ORDER BY bd_num desc;
 	</select>
+	<select id="getBoard" resultType="kr.green.green.vo.BoardVO">
+		SELECT * FROM board WHERE bd_num = #{bd_num} AND bd_del = 'N';
+	</select>
 
 </mapper>
