@@ -82,7 +82,7 @@ public class BoardController {
 		//번호와 작성자가 일치하는 게시글을 가져오라고 시킴
 		//컨트롤러는 서비스가 보내준 게시글 정보를 가지고 정상 접근인지 아닌지 확인
 		MemberVO user = (MemberVO) request. getSession().getAttribute("user");
-		//게스글 = 서비스.게시글가져오기(번호,로그인 정보);
+		//게시글 = 서비스.게시글가져오기(번호,로그인 정보);
 		BoardVO board = boardService.getBoard(bd_num, user);
 		
 		//게시글이 없으면
