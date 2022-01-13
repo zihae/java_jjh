@@ -22,7 +22,7 @@
     <tbody>
       <c:forEach items="${list}" var="board">
 	      <tr>
-	        <td>${board.bd_num}</td>
+	        <td>${board.bd_num}</td>                           <!-- ?는 정보전달 -->
 	        <td><a href="<%=request.getContextPath()%>/board/detail?bd_num=${board.bd_num}">${board.bd_title}</a></td>
 	        <td>${board.bd_me_id}</td>
 	        <td>${board.bd_reg_date_str}</td>

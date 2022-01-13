@@ -37,7 +37,7 @@ public class BoardController {
 		return mv;		
 	}
 	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public ModelAndView boardRegisterPet(ModelAndView mv, BoardVO board,HttpServletRequest request) {
+	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVO board,HttpServletRequest request) {
 		//회원정보 가져오기
 		MemberVO user= (MemberVO)request.getSession().getAttribute("user");
 		board.setBd_me_id(user.getMe_id());
