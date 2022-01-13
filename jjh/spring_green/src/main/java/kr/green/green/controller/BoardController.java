@@ -55,7 +55,31 @@ public class BoardController {
 		mv.setViewName("redirect:/board/list");
 		return mv;	
 	}
-	
+	@RequestMapping(value = "/board/modify", method=RequestMethod.GET)
+	public ModelAndView boardModifyGet(ModelAndView mv, Integer bd_num,HttpServletRequest request) {
+		//컨트롤러에서 회원정보 확인
+		MemberVO user = (MemberVO)request. getSession().getAttribute("user");
+		//서비스에게 게시글,회원정보 가져오라고 시킴
+		BoardVO board =boardService.getBoard(bd_num,user);
+		//게시글이 null이면 게시글 상세로 이동, 게시글이 있으면 수정 화면으로 이동
+		if(board == null) {
+			mv.setViewName("redirect:/board/list");
+		}else {
+			mv.addObject("board", board);
+			mv.setViewName("/board/modify");
+		}
+		mv.setViewName("/board/modify");
+		return mv;	
+	}
+	@RequestMapping(value = "/board/modify", method=RequestMethod.POST)
+	public ModelAndView boardModifyPost(ModelAndView mv, BoardVO board, HttpServletRequest request) {
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+		boardService.updateBoard(board,user);
+		//게시글 번호를 서버로 넘겨줌
+		mv.addObject("bd_num", board.getBd_num());
+		mv.setViewName("redirect:/board/detail");
+		return mv;	
+	}
 	
 	
 
