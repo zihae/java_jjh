@@ -72,6 +72,23 @@ public class BoardServiceImp implements BoardService {
 		//다오에게 수정된 게시글 정보를 주면서 업데이트 하라고 시킴
 		boardDao.updateBoard(dbBoard);
 	}
+
+	@Override
+	public void deleteBoard(Integer bd_num, MemberVO user) {
+		//유효한 번호인지 확인 
+			//번호가 null이거나 음수인 경우 삭제할 필요 없음
+		if(bd_num == null || bd_num <= 0)
+			return;
+		//번호와 일치하는 게시글 가져옴 
+		BoardVO board = boardDao.getBoard(bd_num);
+		//게시글이 없으면 삭제 종료
+		if(board == null)
+			return;
+		//게시글의 작성자(getBd_me_id())와 로그인한 회원 아이디(ser.getMe_id())가 같으면 삭제
+		if(user != null && board.getBd_me_id().equals(user.getMe_id()))
+			boardDao.deleteBoard(bd_num);
+		
+	}
 		
 	}
 

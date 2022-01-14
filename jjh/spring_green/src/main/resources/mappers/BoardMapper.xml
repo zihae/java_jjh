@@ -13,14 +13,22 @@
 	<insert id="insertBoard">
 	INSERT INTO 
 	 board(bd_title, bd_contents, bd_reg_date, bd_type, bd_me_id, bd_ori_num, bd_del)
-	SELECT #{board.bd_title},#{board.bd_contents},now(),#{board.bd_type},#{board.bd_me_id}, ifnull(max(bd_num),0)+1, 'N'
+	SELECT #{board.bd_title},#{board.bd_contents},NOW(),#{board.bd_type},#{board.bd_me_id}, ifnull(max(bd_num),0)+1, 'N'
 	FROM board;
 	</insert>
 	<update id="updateBoard">
 		UPDATE board SET 
 		bd_title = #{board.bd_title},
 		bd_contents = #{board.bd_contents},
-		bd_up_date = now()
+		bd_up_date = NOW()
 		WHERE bd_num = #{board.bd_num};
+	</update>
+	<update id="deleteBoard">
+		UPDATE board SET
+			bd_del = 'Y',
+			bd_del_date = NOW()
+		WHERE bd_num = #{bd_num}; 
+		<!-- 낱개로 bd_num을 보내줬기 때문에 #{bd_num} 앞에 board. 안붙여줘도 됨  -->
+		<!-- DAO에서 @Param("bd_num") 따옴표 안에 있는걸 #{}안에 맞춰서 써줌  -->
 	</update>
 </mapper>

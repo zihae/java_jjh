@@ -80,6 +80,20 @@ public class BoardController {
 		mv.setViewName("redirect:/board/detail");
 		return mv;	
 	}
+	@RequestMapping(value = "/board/delete", method=RequestMethod.GET)
+	public ModelAndView boardDeleteGet(ModelAndView mv, Integer bd_num, HttpServletRequest request) {
+			//bd_num 매개변수 추가 후 게시글 번호 오는지 확인
+			//System.out.println(bd_num);
+		//로그인한 유저 정보 확인
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+			//user 정보 오는지 확인
+			//System.out.println(user);
+		//서비스에게 게시글 번호와 회원정보를 주면서 게시글 삭제하라고 시킴
+		boardService.deleteBoard(bd_num,user);
+		//삭제를 다하면 board list로 이동
+		mv.setViewName("redirect:/board/list");
+		return mv;	
+	}
 	
 	
 
