@@ -3,14 +3,16 @@ package kr.green.spring.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.spring.vo.BoardVO;
+import kr.green.spring.vo.FileVO;
 import kr.green.spring.vo.MemberVO;
 
 @Service
 public interface BoardService {
 
-	void registerBoard(BoardVO board);
+	void registerBoard(BoardVO board, List<MultipartFile> files)throws Exception;
 
 	List<BoardVO> getBoardList(String string);
 
@@ -21,5 +23,7 @@ public interface BoardService {
 	BoardVO getBoard(Integer bd_num, MemberVO user);
 
 	void updateBoard(BoardVO board);
+
+	List<FileVO> getFileList(Integer bd_num);
 
 }
