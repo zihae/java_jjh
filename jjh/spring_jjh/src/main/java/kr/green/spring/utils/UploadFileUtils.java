@@ -56,7 +56,7 @@ public class UploadFileUtils {
 		
 		return datePath;
  
-	}                                              //매개변수 가변
+	}                                              //가변인자
 	public static void makeDir(String uploadPath, String... paths) {
 		if(new File(uploadPath+paths[paths.length-1]).exists())
 			return;
