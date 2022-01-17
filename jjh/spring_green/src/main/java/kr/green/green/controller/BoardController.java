@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.green.service.BoardService;
@@ -42,7 +43,7 @@ public class BoardController {
 		return mv;	
 	}
 	@RequestMapping(value = "/board/register", method=RequestMethod.POST)
-	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVO board, HttpServletRequest request) {
+	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVO board, HttpServletRequest request, List<MultipartFile> files) {
 		//로그인한 사용자 정보를 확인
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
 		//bd_type 설정
@@ -50,7 +51,7 @@ public class BoardController {
 		//화면에서 입력한 게시글이 오는지 확인
 		//System.out.println(board);
 		//서비스에게 일을 시킴
-		boardService.registerBoard(board, user);
+		boardService.registerBoard(board, user, files);
 		//게시글 등록 후 완료되면 /board/list로 이동하도록 처리
 		mv.setViewName("redirect:/board/list");
 		return mv;	

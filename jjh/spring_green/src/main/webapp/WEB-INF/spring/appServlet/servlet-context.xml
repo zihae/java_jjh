@@ -57,8 +57,12 @@
 	        <mapping path="/login"/>
 	        <mapping path="/signup"/>
 	        <beans:ref bean="guestInterceptor"/>
-	    </interceptor>
-		
+	    </interceptor>	
 	</interceptors>
+	<!-- servlet-context.xml -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <!-- 업로드 최대 크기 10Mb -->
+	    <beans:property name="maxUploadSize" value="10485760"></beans:property>
+	</beans:bean>
 	
 </beans:beans>

@@ -10,7 +10,7 @@
 	<select id="getBoard" resultType="kr.green.green.vo.BoardVO">
 		SELECT * FROM board WHERE bd_num = #{bd_num} AND bd_del = 'N';
 	</select>
-	<insert id="insertBoard">
+	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="board.bd_num" parameterType="kr.green.green.vo.BoardVO">
 	INSERT INTO 
 	 board(bd_title, bd_contents, bd_reg_date, bd_type, bd_me_id, bd_ori_num, bd_del)
 	SELECT #{board.bd_title},#{board.bd_contents},NOW(),#{board.bd_type},#{board.bd_me_id}, ifnull(max(bd_num),0)+1, 'N'
@@ -31,4 +31,8 @@
 		<!-- 낱개로 bd_num을 보내줬기 때문에 #{bd_num} 앞에 board. 안붙여줘도 됨  -->
 		<!-- DAO에서 @Param("bd_num") 따옴표 안에 있는걸 #{}안에 맞춰서 써줌  -->
 	</update>
+	<insert id="insertFile">
+		insert into file(fi_ori_name, fi_name, fi_bd_num)
+		values(#{file.fi_ori_name},#{file.fi_name},#{file.fi_bd_num})
+	</insert>
 </mapper>
