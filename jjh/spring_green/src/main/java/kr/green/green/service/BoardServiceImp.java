@@ -53,7 +53,7 @@ public class BoardServiceImp implements BoardService {
 				try {
 					String path = UploadFileUtils.uploadFile(uploadPath, tmpFile.getOriginalFilename(), tmpFile.getBytes());
 				 FileVO file = new FileVO(tmpFile.getOriginalFilename(),path,board.getBd_num());
-				 boardDao.inserFile(file);
+				 boardDao.insertFile(file);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -107,6 +107,13 @@ public class BoardServiceImp implements BoardService {
 		if(user != null && board.getBd_me_id().equals(user.getMe_id()))
 			boardDao.deleteBoard(bd_num);
 		
+	}
+
+	@Override
+	public List<FileVO> getFileList(Integer bd_num) {
+		if(bd_num == null || bd_num <=0)
+			return null;
+		return boardDao.selectFileList(bd_num);
 	}
 		
 	}
