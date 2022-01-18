@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <title>게시글 수정</title>
 </head>
 <body>
@@ -26,7 +28,7 @@
 				</div>
 			</c:forEach>
 			<c:forEach begin="1" end="${3-fileList.size() }">
-				<input type="file" class="form-control" name="files">
+				<input type="file" class="form-control" name="files2">
 			</c:forEach>
 			</div>
 			<button class="btn btn-outline-success col-12">등록</button>
@@ -36,10 +38,15 @@
 				$('.attachment .btn-close').click(function(e){
 					e.preventDefault();
 					$(this).parent().remove();
-					var str ='<input type="file" class="form-control" name="files">';
+					var str ='<input type="file" class="form-control" name="files2">';
 					$('.attachment').append(str);
 				});
 			});
+			 $('[name=bd_contents]').summernote({
+			        placeholder: 'Hello Bootstrap 4',
+			        tabsize: 2,
+			        height: 400
+			 });
 		</script>
 </body>
 </html>

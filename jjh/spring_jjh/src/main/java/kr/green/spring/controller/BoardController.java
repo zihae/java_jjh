@@ -53,12 +53,12 @@ public class BoardController {
 		return mv;		
 	}
 	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVO board,HttpServletRequest request, List<MultipartFile> files) throws Exception {
+	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVO board,HttpServletRequest request, List<MultipartFile> files2) throws Exception {
 		//회원정보 가져오기
 		MemberVO user= (MemberVO)request.getSession().getAttribute("user");
 		board.setBd_me_id(user.getMe_id());
 		board.setBd_type("normal");
-		boardService.registerBoard(board,files);
+		boardService.registerBoard(board,files2);
 		mv.setViewName("redirect:/board/list");
 		return mv;		
 	}
@@ -122,13 +122,13 @@ public class BoardController {
 		return mv;		
 	}
 	@RequestMapping(value="/modify",method=RequestMethod.POST)
-	public ModelAndView boardModifyPost(ModelAndView mv, BoardVO board, List<MultipartFile> files, Integer [] fileNums) {
+	public ModelAndView boardModifyPost(ModelAndView mv, BoardVO board, List<MultipartFile> files2, Integer [] fileNums) {
 		//기본 첨부파일 번호인 fileNums 확인
 		//화면에서 수정한 게시글 정보가 넘어오는지 확인
 		//System.out.println("게시글 : " + board);
 		//서비스에게 게시글 정보를 주면서 업데이트하라고 시킴
 		//서비스.게시글업데이트(게시글 정보)
-		boardService.updateBoard(board, files, fileNums);
+		boardService.updateBoard(board, files2, fileNums);
 		//게시글 번호를 넘겨줌
 		mv.addObject("bd_num",board.getBd_num());
 		mv.setViewName("redirect:/board/detail");
