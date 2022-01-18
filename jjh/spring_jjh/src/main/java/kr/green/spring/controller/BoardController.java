@@ -40,7 +40,7 @@ public class BoardController {
 		//등록된 게시글 중 현재 페이지와 일치하는 게시글을 가져오는 작업
 		List<BoardVO> list = boardService.getBoardList("normal",cri);
 		//페이지메이커를 만들어서 화면에 전달해야함
-		int totalCount = boardService.getTotalCount("normal");
+		int totalCount = boardService.getTotalCount("normal",cri);
 		PageMaker pm = new PageMaker(totalCount,5,cri);
 		mv.addObject("pm", pm);
 		mv.addObject("list", list);
