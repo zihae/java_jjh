@@ -2,6 +2,7 @@ package kr.green.spring.controller;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,10 +60,19 @@ public class BoardController {
 		//회원정보 가져오기
 		MemberVO user= (MemberVO)request.getSession().getAttribute("user");
 		board.setBd_me_id(user.getMe_id());
+		List<String> authorityAdmin = new ArrayList<String>();
+		authorityAdmin.add("admin");
+		authorityAdmin.add("super admin");
+		//공지사항을 작성하는데 회원 권한이 'member'인 경우
+		if(board.getBd_type().equals("notice") &&
+				authorityAdmin.indexOf(user.getMe_authority()) < 0) {
+			mv.setViewName("redirect:/board/list?type=notice");
+		}else {
 		boardService.registerBoard(board,files2);
 		mv.addObject("type", board.getBd_type());
 		mv.setViewName("redirect:/board/list");
-		return mv;		
+		}
+		return mv;	
 	}
 	@RequestMapping(value="/detail")
 	public ModelAndView boardDetail(ModelAndView mv, Integer bd_num) {
@@ -129,11 +139,12 @@ public class BoardController {
 		//화면에서 수정한 게시글 정보가 넘어오는지 확인
 		//System.out.println("게시글 : " + board);
 		//서비스에게 게시글 정보를 주면서 업데이트하라고 시킴
-		//서비스.게시글업데이트(게시글 정보)
+		
 		boardService.updateBoard(board, files2, fileNums);
 		//게시글 번호를 넘겨줌
 		mv.addObject("bd_num",board.getBd_num());
 		mv.setViewName("redirect:/board/detail");
+		
 		return mv;	
 	}
 	@ResponseBody //리턴값이 직접적으로 요청한 곳에 가도록 해주는 것
