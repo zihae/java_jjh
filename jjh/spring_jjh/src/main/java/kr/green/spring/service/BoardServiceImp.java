@@ -184,5 +184,11 @@ public class BoardServiceImp implements BoardService {
 	public int getTotalCount(Criteria cri) {
 		return boardDao.selectCountBoard(cri);
 	}
+
+	@Override
+	public void updateViews(Integer bd_num) {
+		boardDao.updateViews(bd_num);
+		
+	}
 }
 
