@@ -1,5 +1,7 @@
 package kr.green.green.service;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,93 +31,116 @@ public class BoardServiceImp implements BoardService {
 	@Override
 	public BoardVO getBoard(Integer bd_num) {
 		if(bd_num == null || bd_num <= 0)
-		return null;
-		return boardDao.getBoard(bd_num);
+			return null;
+		
+		return boardDao.selectBoard(bd_num);
 	}
 
 	@Override
-	public void registerBoard(BoardVO board, MemberVO user,List<MultipartFile> files) {
+	public void registerBoard(BoardVO board, MemberVO user , List<MultipartFile> files) {
 		if(board == null || user == null)
 			return;
-		if(board.getBd_title() == null
-				|| board.getBd_title().trim().length() ==0)
-			return;	
-		if(user.getMe_id() == null 
-				|| user.getMe_id().trim().length() ==0)
-		return;
+		if(board.getBd_title() == null 
+				|| board.getBd_title().trim().length() == 0)
+			return;
+		if(user.getMe_id()== null || user.getMe_id().trim().length()==0)
+			return;
 		board.setBd_me_id(user.getMe_id());
 		boardDao.insertBoard(board);
 		
+		uploadFile(files, board.getBd_num());
+	}
+
+	@Override
+	public void modifyBoard(BoardVO board, MemberVO user , 
+			List<MultipartFile> files2, Integer[] fileNums) {
+		if(board == null || user == null || board.getBd_num() <= 0 )
+			return;
+		
+		BoardVO dbBoard = boardDao.selectBoard(board.getBd_num());
+		
+		if(dbBoard == null)
+			return;
+		
+		if(!dbBoard.getBd_me_id().equals(user.getMe_id()))
+			return;
+		
+		boardDao.updateBoard(board);
+		
+		//첨부파일을 삭제(수정화면에서 x버튼 눌러서 취소환 첨부파일들)
+		//게시글의 첨부파일들을 가져옴
+		List<FileVO> fileList = boardDao.selectFileList(board.getBd_num());
+		List<FileVO> remainFileList = new ArrayList<FileVO>();
+		//가져온 첨부파일들 중에서 fileNums에 일치하는 번호가 있으면 remailFileList에 추가
+		//유지해야할 첨부파일이 있는 경우
+		if(fileNums != null && fileNums.length != 0) {
+			for(FileVO tmp : fileList) {
+				for(Integer tmpNum : fileNums) {
+					if(tmp.getFi_num() == tmpNum) {
+						remainFileList.add(tmp);
+					}
+				}
+			}
+			//게시글의 전체 첨부파일중 유지해야할 첨부파일을 제외한 첨부파일 만듬
+			fileList.removeAll(remainFileList);
+		}
+		//실제 서버에서 삭제 후 DB에서 삭제처리
+		if(fileList != null && fileList.size()!= 0) {
+			for(FileVO tmp : fileList) {
+				String fileName = tmp.getFi_name().replace("/",File.separator);
+				File file = new File(uploadPath + fileName);
+				boardDao.deleteFile(tmp);
+				if(file.exists()) {
+					file.delete();
+				}
+			}
+		}
+		
+		//새로 추가한 첨부파일을 업로드
+		uploadFile(files2, board.getBd_num());
+	}
+
+	@Override
+	public void deleteBoard(Integer bd_num, MemberVO user) {
+		if(bd_num == null || bd_num <= 0)
+			return;
+		BoardVO board = boardDao.selectBoard(bd_num);
+		if(board == null)
+			return;
+		if(user != null && board.getBd_me_id().equals(user.getMe_id()))
+			boardDao.deleteBoard(bd_num);
+	}
+
+	@Override
+	public List<FileVO> getFileList(Integer bd_num) {
+		if(bd_num == null || bd_num <= 0)
+			return null;
+		return boardDao.selectFileList(bd_num);
+	}
+	
+	private void uploadFile(List<MultipartFile> files, int bd_num) {
 		if(files == null || files.size() == 0)
 			return;
 		for(MultipartFile tmpFile : files) {
 			if(tmpFile != null && tmpFile.getOriginalFilename().length() != 0) {
 				try {
-					String path = UploadFileUtils.uploadFile(uploadPath, tmpFile.getOriginalFilename(), tmpFile.getBytes());
-				 FileVO file = new FileVO(tmpFile.getOriginalFilename(),path,board.getBd_num());
-				 boardDao.insertFile(file);
+					String path = 
+						UploadFileUtils.uploadFile(
+							uploadPath, 
+							tmpFile.getOriginalFilename(), 
+							tmpFile.getBytes());
+					FileVO file 
+						= new FileVO(tmpFile.getOriginalFilename(),path,bd_num);
+					boardDao.insertFile(file);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		}
 	}
-
-	@Override
-	public BoardVO getBoard(Integer bd_num, MemberVO user) {
-		// 게시글이 없는 경우(게시글 번호가 존재하지 않거나 0이하이면) 작업하지 않음
-		if(bd_num == null || bd_num <= 0)
-			return null;
-		// 게시글이 있는 경우 -> 다오에게 게시글 가져오라고 시킴
-		BoardVO board = boardDao.getBoard(bd_num);
-		// 게시글이 null이거나 작성자와 user 아이디가 다르면 작업하지 않음
-		if(board == null || !board.getBd_me_id().equals(user.getMe_id()))
-			return null;
-		//게시글이 있고 작성자와 user 아이디가 같으면 게시글 수정 화면으로 이동
-		return board;
-	}
-
-	@Override
-	public void updateBoard(BoardVO board, MemberVO user) {
-		//다오에게 게시글 번호와 일치하는 게시글을 가져오라고 시킴
-		//게시글 = 다오.게시글가져오기(게시글번호)
-		BoardVO dbBoard = boardDao.getBoard(board.getBd_num());
-		
-		//가져온 게시글의 제목과 내용을 board의 제목과 내용으로 덮어쓰기를 함
-		dbBoard.setBd_title(board.getBd_title());
-		dbBoard.setBd_contents(board.getBd_contents());
-		
-		//가져온 게시글의 수정일을 현재 시간으로 업데이트 
-		dbBoard.setBd_up_date(new Date());
-		
-		//다오에게 수정된 게시글 정보를 주면서 업데이트 하라고 시킴
-		boardDao.updateBoard(dbBoard);
-	}
-
-	@Override
-	public void deleteBoard(Integer bd_num, MemberVO user) {
-		//유효한 번호인지 확인 
-			//번호가 null이거나 음수인 경우 삭제할 필요 없음
-		if(bd_num == null || bd_num <= 0)
-			return;
-		//번호와 일치하는 게시글 가져옴 
-		BoardVO board = boardDao.getBoard(bd_num);
-		//게시글이 없으면 삭제 종료
-		if(board == null)
-			return;
-		//게시글의 작성자(getBd_me_id())와 로그인한 회원 아이디(ser.getMe_id())가 같으면 삭제
-		if(user != null && board.getBd_me_id().equals(user.getMe_id()))
-			boardDao.deleteBoard(bd_num);
+	private void deleteFile() {
 		
 	}
-
-	@Override
-	public List<FileVO> getFileList(Integer bd_num) {
-		if(bd_num == null || bd_num <=0)
-			return null;
-		return boardDao.selectFileList(bd_num);
-	}
-		
 	}
 
 

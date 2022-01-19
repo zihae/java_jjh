@@ -10,15 +10,14 @@ import kr.green.green.vo.MemberVO;
 
 public interface BoardService {
 
-	List<BoardVO> getBoardList(String bd_type);
+
+	List<BoardVO> getBoardList(String string);
 
 	BoardVO getBoard(Integer bd_num);
 
 	void registerBoard(BoardVO board, MemberVO user, List<MultipartFile> files);
 
-	BoardVO getBoard(Integer bd_num, MemberVO user);
-
-	void updateBoard(BoardVO board, MemberVO user);
+	void modifyBoard(BoardVO board, MemberVO user, List<MultipartFile> files2, Integer[] fileNums);
 
 	void deleteBoard(Integer bd_num, MemberVO user);
 

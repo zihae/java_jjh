@@ -7,7 +7,7 @@
 		SELECT * FROM board WHERE bd_type = #{bd_type} AND bd_del = 'N'
 		ORDER BY bd_num desc;
 	</select>
-	<select id="getBoard" resultType="kr.green.green.vo.BoardVO">
+	<select id="selectBoard" resultType="kr.green.green.vo.BoardVO">
 		SELECT * FROM board WHERE bd_num = #{bd_num} AND bd_del = 'N';
 	</select>
 	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="board.bd_num" parameterType="kr.green.green.vo.BoardVO">
@@ -36,6 +36,12 @@
 		values(#{file.fi_ori_name},#{file.fi_name},#{file.fi_bd_num})
 	</insert>
 	<select id="selectFileList" resultType="kr.green.green.vo.FileVO">
-	select * from file where fi_bd_num = #{bd_num};
+	select * from file where fi_bd_num = #{bd_num} and fi_del is null 
 	</select>
+	<update id="deleteFile">
+		update file set
+			fi_del = 'Y',
+			fi_del_date = now()
+		where fi_num = #{file.fi_num}
+	</update>
 </mapper>
