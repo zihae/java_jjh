@@ -5,7 +5,7 @@
 <mapper namespace="kr.green.green.dao.BoardDAO">
 	<select id="selectBoardList" resultType="kr.green.green.vo.BoardVO">
 		SELECT * FROM board WHERE bd_type = #{bd_type} AND bd_del = 'N' AND bd_title LIKE concat('%', #{cri.search},'%')
-		ORDER BY bd_num desc limit #{cri.pageStart}, #{cri.perPageNum};
+		ORDER BY bd_ori_num desc, bd_num asc limit #{cri.pageStart}, #{cri.perPageNum};
 	</select>
 	<select id="selectBoard" resultType="kr.green.green.vo.BoardVO">
 		SELECT * FROM board WHERE bd_num = #{bd_num} AND bd_del = 'N';
@@ -13,8 +13,13 @@
 	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="board.bd_num" parameterType="kr.green.green.vo.BoardVO">
 		INSERT INTO 
 		 board(bd_title, bd_contents, bd_reg_date, bd_type, bd_me_id, bd_ori_num, bd_del)
+		<if test="board.bd_ori_num == 0">
 		SELECT #{board.bd_title},#{board.bd_contents},NOW(),#{board.bd_type},#{board.bd_me_id}, ifnull(max(bd_num),0)+1, 'N'
 		FROM board;
+		</if>
+		<if test="board.bd_ori_num != 0">
+		VALUES (#{board.bd_title},#{board.bd_contents},NOW(),#{board.bd_type},#{board.bd_me_id}, #{board.bd_ori_num}, 'N')
+		</if>
 	</insert>
 	<update id="updateBoard">
 		UPDATE board SET 

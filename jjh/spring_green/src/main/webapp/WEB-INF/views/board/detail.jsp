@@ -37,6 +37,18 @@
 					<button class="btn btn-outline-success">삭제</button>
 				</a>
 			</c:if>
+			<!-- 현재 보고 있는 게시글이 원본 게시글인 경우 -->
+			<c:if test="${board.bd_num == board.bd_ori_num }">
+				<a href="<%=request.getContextPath()%>/board/register?bd_ori_num=${board.bd_num}">
+						<button class="btn btn-outline-success">답변</button>
+				</a>
+			</c:if>
+			<!-- 현재 보고 있는 게시글이 답변 게시글인 경우 -->
+			<c:if test="${board.bd_num != board.bd_ori_num }">
+				<a href="<%=request.getContextPath()%>/board/register?bd_ori_num=${board.bd_ori_num}">
+						<button class="btn btn-outline-success">답변</button>
+				</a>
+			</c:if>
 		</c:if>
 		<c:if test="${board == null}">
 			<h1>존재하지 않는 게시글 입니다.</h1>
