@@ -21,7 +21,7 @@
 	    <button class="btn btn-success" type="submit">검색</button>
 	  </div>
 	  <input type="hidden" name="type" value="${pm.criteria.type }">
-    </form>
+   </form>
 	<table class="table table-warning table-hover">
     <thead>
       <tr>
@@ -34,7 +34,7 @@
     </thead>
     <tbody>
     <!-- 
-    	varStatus="vs" 일때
+    	varStatus(태그 상태 속성)="vs" 일때
     	vs.index : 0부터 시작해서 현재 반복된 횟수
     	vs.count : 1부터 시작해서 현재 반복된 횟수 
     -->

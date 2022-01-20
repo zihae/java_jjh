@@ -2,7 +2,6 @@ package kr.green.green.service;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.green.dao.BoardDAO;
+import kr.green.green.pagination.Criteria;
 import kr.green.green.utils.UploadFileUtils;
 import kr.green.green.vo.BoardVO;
 import kr.green.green.vo.FileVO;
@@ -24,8 +24,8 @@ public class BoardServiceImp implements BoardService {
 	String uploadPath = "D:\\JAVA_jjh\\upload";
 
 	@Override
-	public List<BoardVO> getBoardList(String bd_type) {
-		return boardDao.selectBoardList(bd_type);
+	public List<BoardVO> getBoardList(String bd_type,Criteria cri) {
+		return boardDao.selectBoardList(bd_type,cri);
 	}
 
 	@Override
@@ -145,6 +145,12 @@ public class BoardServiceImp implements BoardService {
 				
 			}
 		}
+	}
+
+	@Override
+	public int getTotalCount(String type, Criteria cri) {
+		//다오에게 type에 맞는 게시글 전체수를 가져오라고 시킴
+		return boardDao.selectCountBoard(type,cri);
 	}
 	}
 
