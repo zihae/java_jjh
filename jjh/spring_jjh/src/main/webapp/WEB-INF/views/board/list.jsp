@@ -61,6 +61,7 @@
 		    </li>
 	    </c:if>
 	    <c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
+	    	<!-- 페이지네이션에서 현재 있는 페이지와 그 외 페이지들을 (파랑색으로)구분하는 코드 -->
 	    	<c:if test="${i != pm.criteria.page }">
 			    <li class="page-item">
 			    	<a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${i}&search=${pm.criteria.search}&type=${pm.criteria.type}">${i}</a>
