@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="body container">
-	<h1>게시글</h1>
+		<h1>${pm.criteria.typeTitle}</h1>
 	<form class="input-group mb-3" action="<%=request.getContextPath()%>/board/list">       <!-- 검색어 유지 -->
 	  <input type="text" class="form-control" name="search" placeholder="검색어를 입력하세요" value="${pm.criteria.search }">
 	  <div class="input-group-append">
@@ -23,6 +23,7 @@
         <th>제목</th>
         <th>작성자</th>
         <th>작성일</th>
+        <th>조회수</th>
       </tr>
     </thead>
     <tbody>
@@ -37,6 +38,7 @@
 	        </c:if>                        
 	        <td>${board.bd_me_id}</td>
 	        <td>${board.bd_reg_date_str}</td>
+	        <td>${board.bd_views}</td>
 	      </tr>  
       </c:forEach>    
       </tbody>
@@ -55,10 +57,10 @@
 		    	<a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.endPage+1}&search=${pm.criteria.search}">다음</a>
 		   	</li>
 		  </ul>
-      <c:if test="${user != null}">
-      <a href="<%=request.getContextPath()%>/board/register">
-      <button class="btn btn-outline-success">글쓰기</button>
-      </a>
+      <c:if test="${pm.criteria.type != 'notice' || (user.me_authority == 'admin' || user.me_authority == 'super admin') }">
+	      <a href="<%=request.getContextPath()%>/board/register?bd_type=${pm.criteria.type}">
+	      	<button class="btn btn-outline-success">글쓰기</button>
+	      </a>
       </c:if>
       </div>
 </body>

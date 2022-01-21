@@ -12,7 +12,7 @@ import kr.green.green.vo.MemberVO;
 public interface BoardService {
 
 
-	List<BoardVO> getBoardList(String string, Criteria cri);
+	List<BoardVO> getBoardList(Criteria cri);
 
 	BoardVO getBoard(Integer bd_num);
 
@@ -24,6 +24,8 @@ public interface BoardService {
 
 	List<FileVO> getFileList(Integer bd_num);
 
-	int getTotalCount(String type, Criteria cri);
+	int getTotalCount(Criteria cri);
+
+	void updateViews(Integer bd_num);
 
 }

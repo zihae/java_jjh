@@ -36,9 +36,9 @@ public class BoardController {
 	public ModelAndView boardList(ModelAndView mv, Criteria cri) {
 		cri.setPerPageNum(4);
 		//컨트롤러가 서비스에게 게시글 가져오라고 시킬 때 현재 페이지 정보도 같이 넘겨줌
-		List<BoardVO> list = boardService.getBoardList("normal",cri);
+		List<BoardVO> list = boardService.getBoardList(cri);
 		//컨트롤러에서 서비스에게 총게시글(일반) 수를 알려달라고 시킴
-		int totalCount = boardService.getTotalCount("normal",cri);
+		int totalCount = boardService.getTotalCount(cri);
 		//가져온 게시글 수와 설정한 한 페이지네이션의 페이지수, 
 		//매개변수로 전달받은 현재 페이지 정보를 이용하여 페이지 메이커를 만듬
 		PageMaker pm = new PageMaker(totalCount,2,cri);
@@ -53,14 +53,15 @@ public class BoardController {
 		BoardVO board = boardService.getBoard(bd_num);
 		//게시글 번호와 일치하는 첨부파일을 가져오라고 시킴
 		List<FileVO> fileList = boardService.getFileList(bd_num);
+		boardService.updateViews(bd_num);
 		mv.addObject("fileList",fileList);
 		mv.addObject("board", board);
 		mv.setViewName("/board/detail");
 		return mv;
 	}
 	@RequestMapping(value="/board/register", method=RequestMethod.GET)
-	public ModelAndView boardRegisterGet(ModelAndView mv, Integer bd_ori_num) {
-		mv.addObject("bd_ori_num", bd_ori_num);
+	public ModelAndView boardRegisterGet(ModelAndView mv, BoardVO board) {
+		mv.addObject("board", board);
 		mv.setViewName("/board/register");
 		return mv;
 	}
@@ -68,8 +69,8 @@ public class BoardController {
 	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVO board, 
 			HttpServletRequest request, List<MultipartFile> files) {
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
-		board.setBd_type("normal");
 		boardService.registerBoard(board, user, files);
+		mv.addObject("type", board.getBd_type());
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
