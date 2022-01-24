@@ -28,7 +28,7 @@
 	    <c:if test="${user != null }">
 		    <li class="nav-item">
 			   <a class="nav-link" href="<%=request.getContextPath()%>/logout">로그아웃</a>
-			</li>
+				</li>
 	    </c:if>
 	    <li class="nav-item">
 		      <a class="nav-link" href="<%=request.getContextPath()%>/board/list?type=notice">공지사항</a>
