@@ -24,25 +24,31 @@ public class CommentController {
 	CommentService commentService;
 	
 	@RequestMapping(value ="/comment/insert")
-	public String commentInsert(@RequestBody CommentVO comment,HttpServletRequest request) {
+	public String commentInsert(@RequestBody CommentVO comment, 
+			HttpServletRequest request){
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
-		if(commentService.insertComment(comment,user)) {
+		if(commentService.insertComment(comment, user)) {
 			return "true";
 		}
-		return "false";
+	  return "false";
 	}
-
 	@RequestMapping(value ="/comment/list")
-	public Map<String, Object> commentList(Integer co_bd_num, Integer page) {
-		Criteria cri = new Criteria(page,5);
+	public Map<String, Object> commentList(Integer co_bd_num, Integer page){
+		Criteria cri = new Criteria(page, 5);
 		List<CommentVO> list = commentService.selectCommentList(co_bd_num, cri);
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		int totalCount = commentService.selectTotalCount(co_bd_num);
-		PageMaker pm = new PageMaker(totalCount,5,cri);
+		PageMaker pm = new PageMaker(totalCount, 5, cri);
 		map.put("pm", pm);
 		map.put("list", list);
-		return null;
+		return map;
+	}
+	@RequestMapping(value ="/comment/delete")
+	public String commentDelete(Integer co_num,HttpServletRequest request){
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+		
+	  return commentService.deleteComment(co_num, user);
 	}
 }
 
