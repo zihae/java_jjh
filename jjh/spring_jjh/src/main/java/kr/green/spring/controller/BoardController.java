@@ -131,7 +131,6 @@ public class BoardController {
 		//서비스에게 번호를 알려주면서 게시글을 가져오라고 시킴
 		//서비스가 보내준 게시글의 작성자와 로그인한 회원 아이디가 일치하는지 확인
 		//컨트롤러가 서비스가 보내준 게시글 정보를 가지고 추가 확인 
-		mv.setViewName("/board/modify");
 		return mv;		
 	}
 	@RequestMapping(value="/modify",method=RequestMethod.POST)
