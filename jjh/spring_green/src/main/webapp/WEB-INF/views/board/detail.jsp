@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 상세</title>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/comment.js"></script>
 </head>
 <body>
 			<h1>${board.typeTitle }상세</h1>
@@ -51,5 +51,80 @@
 						<button class="btn btn-outline-success">답변</button>
 				</a>
 			</c:if>
+			
+			<div class="comment-list">
+				
+			</div>
+			<div class="comment-pagination"></div>
+			
+			<div class="input-group mb-3 mt-3">
+			  <textarea class="form-control co_contents" rows="3"></textarea>
+			  <div class="input-group-append">
+			    <button class="btn btn-success btn-comment-insert">등록</button>
+			  </div>
+			</div>
+			
+			<script type="text/javascript">
+			var contextPath = '<%=request.getContextPath()%>';
+			
+			$(function(){
+				$('.btn-comment-insert').click(function(){
+						var co_me_id ='${user.me_id}';
+						if(co_me_id == ''){
+							alert('댓글은 로그인한 회원만 작성 가능합니다.');
+							return;
+						}
+						//input, textarea, select 처럼 입력 가능한 정보만 val() 쓸 수 있음
+						var co_contents = $('.co_contents').val();
+						var co_bd_num = '${board.bd_num}';
+						//하나의 객체로 묶음
+						var comment = {
+								co_me_id : co_me_id,
+								co_contents : co_contents,
+								co_bd_num : co_bd_num
+						};
+						commentService.insert(comment, '/comment/insert', function(res){
+							if(res){
+					        	   alert('댓글 등록이 완료 되었습니다.');
+					        	   $('.co_contents').val(''); //댓글이 등록되면 contents 비움
+					           }else{
+					        	   alert('댓글 등록에 실패 했습니다.');
+					           }
+									});
+							});
+				
+				 $.ajax({
+				        async:false,
+				        type:'get',
+				        url: contextPath + "/comment/list?page=1&bd_num=" + '${board.bd_num}',
+				      	dataType:"json",
+				        success : function(res){
+				         success(res);
+				           }
+				        });
+					});
+			function createComment(comment, me_id){
+				var str = '';
+				str ='<div class="comment-box clearfix">'
+				if(comment.co_ori_num != comment.co_num){
+					str ='<div class="float-left" style="width:24px">└</div>'
+					str ='<div class="float-left" style="width:calc(100% - 24px)">'
+				}else{
+					str ='<div class="float-left" style="width:100%">'
+				}
+				str ='<div class="co_me_id">'+comment.co_me_id+'</div>'
+				str ='<div class="co_contents">'+comment.co_contents+'</div>'
+				str ='<div class="co_reg_date">'+comment.co_reg_date+'</div>'
+				if(comment.co_or_num == comment.co_num)
+				str ='<button class="btn btn-outline-success btn-rep-comment">답글</button>'
+				if(comment.co_me_id == me_id){
+				str ='<button class="btn btn-outline-dark btn-mod-comment">수정</button>'
+				str ='<button class="btn btn-outline-danger btn-del-comment">삭제</button>'
+				}
+				str ='</div>'
+				str ='<hr class="float-left" style="width:100%">'
+				str ='</div>'
+			}
+			</script>
 </body>
 </html>

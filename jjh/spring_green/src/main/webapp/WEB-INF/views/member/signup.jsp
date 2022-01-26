@@ -28,6 +28,9 @@
 		<div class="form-group">
 			<input type="text" class="form-control" placeholder="아이디" name="me_id" value="${user.me_id}">
 		</div>
+		<div class = "form-group">
+			<button id="idCheck" type="button" class="btn btn-outline-success col-12">아이디 중복검사</button>
+		</div>
 		<div class="form-group">
 			<input type="password" class="form-control" placeholder="비밀번호" name="me_pw" value="${user.me_pw}">
 		</div>
@@ -67,6 +70,7 @@
 		<button class="btn btn-outline-success col-12">회원가입</button>
 	</form>
 	<script>
+		let idCheck = false; //전역변수
 		$('form').submit(function(){
 			var id = $('[name=me_id]').val().trim();
 			var pw = $('[name=me_pw]').val().trim();
@@ -86,6 +90,12 @@
 				alert('아이디를 입력하세요.');
 				$('[name=me_id]').focus();
 				return false;
+				
+			if(!idCheck){ 
+				alert('아이디 중복확인을 하세요.');
+				return false;
+			}	
+				
 			}
 			if(pw == ''){
 				alert('비밀번호를 입력하세요.');
@@ -115,8 +125,37 @@
 			var address = $('#address').val() + ' ' +$('#detailAddress').val();
 			$('[name=me_address]').val(address);
 		});
+		
+		//데이트 피커
 		$('#birth').datepicker();
 		$('#birth').datepicker('option','dateFormat', 'yy-mm-dd');
+		
+		//아이디 중복체크
+		$('#idCheck').click(function(){
+			var id = $('[name=me_id]').val(); //name=me_id인 값의 value 가져옴
+			$.ajax({
+		        async:false,
+		        type:'get',
+		        url: '<%=request.getContextPath()%>/idcheck?me_id='+id,
+		        success : function(data){
+		           if(data == 'true'){
+		        	   alert('사용 가능한 아이디입니다.');
+		        	   idCheck = true;
+		           }
+	        	   else{
+	        		 alert('이미 가입된 아이디입니다.');
+		           idCheck = false;
+	        	   }
+		        }
+		    });	
+		});
+		
+		//change는 내용이 바뀐 상태에서 다른 곳으로 가서 비활성화 됐을 때 작동
+		$('[name=me_id]').change(function(){
+			idCheck = false;
+		})
+		
+		
 		function execDaumPostcode() {
 			new daum.Postcode({
 				oncomplete: function(data) {

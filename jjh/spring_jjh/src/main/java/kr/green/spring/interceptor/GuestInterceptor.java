@@ -2,6 +2,7 @@ package kr.green.spring.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class GuestInterceptor extends HandlerInterceptorAdapter {
@@ -17,6 +18,7 @@ public class GuestInterceptor extends HandlerInterceptorAdapter {
 			response.sendRedirect(request.getContextPath()+"/");
 			return false;
 		}
-		return true; // 원래 가려던 URL로 가려면 return true;
+		return true;
 	}
 }
+
