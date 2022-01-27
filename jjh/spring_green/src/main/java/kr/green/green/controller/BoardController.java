@@ -116,7 +116,7 @@ public class BoardController {
 	public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
 	    InputStream in = null;
 	    ResponseEntity<byte[]> entity = null;
-	    String uploadPath = "D:\\JAVA_JIK\\upload";
+	    String uploadPath = "D:\\JAVA_jjh\\upload";
 	    try{
 	        String FormatName = fileName.substring(fileName.lastIndexOf(".")+1);
 	        HttpHeaders headers = new HttpHeaders();

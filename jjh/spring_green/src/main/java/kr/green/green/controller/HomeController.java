@@ -31,7 +31,6 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public ModelAndView signupPost(ModelAndView mv, MemberVO user) {
-		System.out.println(user);
 		boolean isSignup = memberService.signup(user);
 		if(isSignup) {
 			mv.setViewName("redirect:/"); //회원가입 성공하면 메인 페이지로
@@ -50,11 +49,10 @@ public class HomeController {
 		
 		MemberVO loginUser = memberService.login(user);
 		mv.addObject("user",loginUser);
-		if(user == null) 
+		if(loginUser == null) 
 			mv.setViewName("redirect:/login");
 		else 
 			mv.setViewName("redirect:/");
-		System.out.println(loginUser);
 		return mv;
 	}
 	@RequestMapping(value = "/logout")
