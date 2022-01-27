@@ -95,6 +95,11 @@
 						});
 				
 				$(document).on('click', '.comment-pagination .page-item',function(){
+						
+						if($(this).hasClass('disabled')){
+								return;
+						}
+					
 					var page = $(this).data('page');
 					//댓글 새로고침
 					var listUrl = '/comment/list?page='+page+'&bd_num='+ '${board.bd_num}';
@@ -102,16 +107,51 @@
 				});
 				
 				$(document).on('click','.btn-del-comment',function(){
+					
 					var co_num = $(this).data('num');
 					//위에랑 같은 코드 var co_num = $(this).attr('data-num');
 					var deleteUrl = '/comment/delete?co_num=' + co_num;
 					commentService.delete(deleteUrl, deleteSuccess);
 				});
 				
+				
+				$(document).on('click','.btn-mod-comment',function(){
+					//댓글 초기화
+					commentInit();
+					$(this).parent().children('button').hide();
+					$(this).siblings('.co_contents').hide();
+					var text = $(this).siblings('.co_contents').text();
+					var textarea 
+					= '<textarea class="form-control co_contents2">'+text+'</textarea>';
+					$(this).siblings('.co_contents').after(textarea);
+					var button
+					= '<button class="btn btn-outline-info btn-mod-insert">댓글 수정</button>'
+					$(this).siblings('.co_reg_date').after(button);
+				});
+				
+				
 				//화면 로딩 준비가 끝나면 댓글 불러옴
 				var listUrl = '/comment/list?page=1&bd_num=' + '${board.bd_num}';
 				 commentService.list(listUrl,listSuccess);
 				});
+			
+			function getDateToString(date){
+				return "" + 
+				date.getFullYear() + "-" + 
+				(date.getMonth()+1) + "-" +
+				date.getDate() + " " +
+				date.getHours() + ":" +
+				date.getMinutes();
+			}
+			
+			function commentInit(){
+				$('.comment-box').each(function(){
+					$(this).find('.co_contents2').remove();
+					$(this).find('.btn-mod-insert').remove();
+					$(this).find('button').show();
+					$(this).find('.co_contents').show();
+				});
+			}
 			
 			function deleteSuccess(res){
 				if(res){
@@ -152,8 +192,9 @@
            }
 				}
 			function createComment(comment, me_id){
+				var co_reg_date = getDateToString(new Date(comment.co_reg_date));
 				var str = '';
-				str+=	'<div class="commnet-box clearfix">'
+				str+=	'<div class="comment-box clearfix">'
 				
 				if(comment.co_ori_num != comment.co_num){
 				str+=		'<div class="float-left" style="width:24px">└</div>'
@@ -163,7 +204,7 @@
 				}
 				str+=			'<div class="co_me_id">'+comment.co_me_id+'</div>'
 				str+=			'<div class="co_contents">'+comment.co_contents+'</div>'
-				str+=			'<div class="co_reg_date">'+comment.co_reg_date+'</div>'
+				str+=			'<div class="co_reg_date">'+co_reg_date+'</div>'
 				if(comment.co_ori_num == comment.co_num)
 				str+=			'<button class="btn btn-outline-success btn-rep-comment mr-2">답글</button>'
 				if(comment.co_me_id == me_id){
