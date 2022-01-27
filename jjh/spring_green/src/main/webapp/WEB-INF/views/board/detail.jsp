@@ -100,20 +100,46 @@
 					var listUrl = '/comment/list?page='+page+'&bd_num='+ '${board.bd_num}';
 					 commentService.list(listUrl,listSuccess);
 				});
+				
+				$(document).on('click','.btn-del-comment',function(){
+					var co_num = $(this).data('num');
+					//위에랑 같은 코드 var co_num = $(this).attr('data-num');
+					var deleteUrl = '/comment/delete?co_num=' + co_num;
+					commentService.delete(deleteUrl, deleteSuccess);
+				});
+				
+				//화면 로딩 준비가 끝나면 댓글 불러옴
 				var listUrl = '/comment/list?page=1&bd_num=' + '${board.bd_num}';
 				 commentService.list(listUrl,listSuccess);
-			});
-			function listSuccess(res){
-						 var str = '';
-		         var me_id = '${user.me_id}';
-		         for(tmp of res.list){
-		        	 str += createComment(tmp,me_id);
-		         }
-		         $('.comment-list').html(str);
-		         //페이지 메이커
-		         var paginationStr = createPagenation(res.pm);
-		         $('.comment-pagination').html(paginationStr);
-			}
+				});
+			
+			function deleteSuccess(res){
+				if(res){
+					alert('댓글을 삭제했습니다.')
+					var listUrl = '/comment/list?page=1&bd_num=' + '${board.bd_num}';
+					 commentService.list(listUrl,listSuccess);
+				}else{
+					alert('댓글 삭제에 실패했습니다.')
+				}
+				}
+			
+				function listSuccess(res){
+							 var str = '';
+			         var me_id = '${user.me_id}';
+			         //댓글 목록이 없으면 페이지네이션이 안 보이게
+			         if(res.list.length == 0){
+			        	 $('.comment-list').html('');
+			        	 $('.comment-pagination').html('');
+			        	 return;
+			         }
+			         for(tmp of res.list){
+			        	 str += createComment(tmp,me_id);
+			         }
+			         $('.comment-list').html(str);
+			         //페이지 메이커
+			         var paginationStr = createPagenation(res.pm);
+			         $('.comment-pagination').html(paginationStr);
+				}
 			function insertSuccess(res){
 				if(res){
        	   alert('댓글 등록이 완료 되었습니다.');
@@ -141,8 +167,8 @@
 				if(comment.co_ori_num == comment.co_num)
 				str+=			'<button class="btn btn-outline-success btn-rep-comment mr-2">답글</button>'
 				if(comment.co_me_id == me_id){
-				str+=			'<button class="btn btn-outline-dark btn-mod-comment mr-2">수정</button>'
-				str+=			'<button class="btn btn-outline-danger btn-del-comment">삭제</button>'
+				str+=			'<button class="btn btn-outline-dark btn-mod-comment mr-2" data-num="'+comment.co_num+'">수정</button>'
+				str+=			'<button class="btn btn-outline-danger btn-del-comment" data-num="'+comment.co_num+'">삭제</button>'
 				}
 				str+=		'</div>'
 				str+=		'<hr class="float-left" style="width:100%">'
