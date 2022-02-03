@@ -53,4 +53,20 @@ public class CommentServiceImp implements CommentService {
 		return true;
 		}
 
+		@Override
+		public boolean modifyComment(CommentVO comment, MemberVO user) {
+			if(comment == null || user == null)
+				return false;
+			if(comment.getCo_num() <= 0)
+				return false;
+			//dbComment 만드는 이유: 사용자의 정보를 확인, 올바른 접근인지 확인하기 위해 
+			CommentVO dbComment = commentDao.selectComment(comment.getCo_num());
+			if(dbComment == null)
+				return false;
+			if(!dbComment.getCo_me_id().equals(user.getMe_id()))
+				return false;
+			commentDao.updateComment(comment);
+			return true;
+		}
+
 }
