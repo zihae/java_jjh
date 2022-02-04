@@ -85,4 +85,16 @@ public class HomeController {
 			return "ok";
 		return "no";
 	}
+	
+	@RequestMapping(value = "/mypage")
+	public ModelAndView mypageGet(ModelAndView mv, MemberVO input, HttpServletRequest request) {
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+		MemberVO newUser = memberService.updateMember(input,user);
+		//회원정보를 수정하면 -> newUser != null
+		if(newUser != null) {
+			request.getSession().setAttribute("user", newUser);
+		}
+		mv.setViewName("/member/mypage");
+		return mv;
+	}
 }

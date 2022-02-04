@@ -50,7 +50,7 @@
     <interceptor>
         <mapping path="/board/register"/>
         <mapping path="/board/modify"/>
-        <mapping path="/board/detail"/>
+        <mapping path="/board/delete"/>
         <beans:ref bean="memberInterceptor"/>
     </interceptor>
     <interceptor>
