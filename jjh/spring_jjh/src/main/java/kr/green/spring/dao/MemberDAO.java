@@ -18,6 +18,8 @@ public interface MemberDAO {
 	
 	List<MemberVO> selectMemberList();
 	
+	void updateAutoLogin(@Param("user")MemberVO user);
+	
 	
 
 	
