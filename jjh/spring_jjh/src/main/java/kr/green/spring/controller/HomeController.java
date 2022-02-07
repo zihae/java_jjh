@@ -108,4 +108,12 @@ public class HomeController {
 	public String memberFindId(@RequestBody MemberVO member) {
 		return memberService.findId(member);
 	}
+	@ResponseBody
+	@RequestMapping(value = "/member/find/pw")
+	public String memberFindPw(@RequestBody MemberVO member) {
+		//임시 비밀번호 생성
+		//생성된 비밀번호를 DB에 저장
+		//이메일로 새 비번을 전송
+		return memberService.findPw(member);
+	}
 }
