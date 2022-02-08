@@ -1,6 +1,11 @@
 package kr.green.spring.service;
 
+import java.util.List;
+
+import kr.green.spring.vo.MainCategoryVO;
 import kr.green.spring.vo.MemberVO;
+import kr.green.spring.vo.MiddleCategoryVO;
+import kr.green.spring.vo.SubCategoryVO;
 
 public interface MemberService {
 
@@ -19,5 +24,11 @@ public interface MemberService {
 	void updateAutoLogin(MemberVO user);
 
 	MemberVO selectMemberBySessionId(String value);
+
+	List<MainCategoryVO> selectMainCategory();
+
+	List<MiddleCategoryVO> selectMiddleCategory(Integer mi_ma_num);
+
+	List<SubCategoryVO> selectSubCategory(Integer su_mi_num);
 
 }
