@@ -67,4 +67,21 @@ public class HomeController {
 	return memberService.idCheck(me_id);
 	}
 	
+	@RequestMapping(value = "/mypage")
+	public ModelAndView mypage(ModelAndView mv, MemberVO inputUser
+			, HttpServletRequest request) {
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+		user = memberService.updateMember(inputUser,user);
+		if(user != null)
+			request.getSession().setAttribute("user", user);
+		mv.setViewName("/member/mypage");
+		return mv;
+	}
+	@RequestMapping(value = "/member/find")
+	public ModelAndView memberFind(ModelAndView mv) {
+		
+		mv.setViewName("/member/find");
+		return mv;
+	}
+	
 }
