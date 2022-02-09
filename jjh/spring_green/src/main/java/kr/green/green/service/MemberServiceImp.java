@@ -80,5 +80,12 @@ public class MemberServiceImp implements MemberService {
 		memberDao.updateMember(inputUser);
 		return inputUser;
 	}
+
+	@Override
+	public String selectMemberByEmail(MemberVO member) {
+		if(member == null)
+			return "";
+		return memberDao.selectIdByEmail(member);
+	}
 	
 }
