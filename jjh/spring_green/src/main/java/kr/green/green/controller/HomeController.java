@@ -1,6 +1,9 @@
 package kr.green.green.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,8 +64,12 @@ public class HomeController {
 		return mv;
 	}
 	@RequestMapping(value = "/logout")
-	public ModelAndView logout(ModelAndView mv, HttpServletRequest request) {
-		request.getSession().removeAttribute("user");
+	public ModelAndView logout(ModelAndView mv, HttpSession session) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		session.removeAttribute("user");
+		user.setMe_session_limit(new Date());
+		user.setMe_session_id("none");
+		memberService.insertAutoLogin(user);
 		mv.setViewName("redirect:/");
 		return mv;
 	}

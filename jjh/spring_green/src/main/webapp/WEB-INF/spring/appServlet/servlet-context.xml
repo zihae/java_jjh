@@ -42,6 +42,8 @@
 	class="kr.green.green.interceptor.MemberInterceptor"></beans:bean>
 	<beans:bean id="guestInterceptor" 
 	 class="kr.green.green.interceptor.GuestInterceptor"></beans:bean>
+	 <beans:bean id="autoInterceptor" 
+	 class="kr.green.green.interceptor.AutoInterceptor"></beans:bean>
 	<interceptors>
 		<interceptor>
         <mapping path="/login"/>
@@ -55,9 +57,13 @@
         <beans:ref bean="memberInterceptor"/>
     </interceptor>
     <interceptor>
-	        <mapping path="/login"/>
-	        <mapping path="/signup"/>
-	        <beans:ref bean="guestInterceptor"/>
+        <mapping path="/login"/>
+        <mapping path="/signup"/>
+        <beans:ref bean="guestInterceptor"/>
+	   </interceptor>	
+	   <interceptor>
+        <mapping path="/**/"/>
+        <beans:ref bean="autoInterceptor"/>
 	    </interceptor>	
 	</interceptors>
 	<!-- servlet-context.xml -->
