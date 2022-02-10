@@ -13,4 +13,6 @@ public interface MemberService {
 	MemberVO updateMember(MemberVO inputUser, MemberVO user);
 
 	String selectMemberByEmail(MemberVO member);
+
+	String sendPassword(MemberVO member);
 }

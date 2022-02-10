@@ -88,5 +88,10 @@ public class HomeController {
 	public String memberFindId(@RequestBody MemberVO member) {
 		return memberService.selectMemberByEmail(member);
 	}
+	@ResponseBody
+	@RequestMapping(value = "/member/find/pw")
+	public String memberFindPw(@RequestBody MemberVO member) {
+		return memberService.sendPassword(member);
+	}
 	
 }
