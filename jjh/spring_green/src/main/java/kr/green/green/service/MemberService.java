@@ -21,4 +21,6 @@ public interface MemberService {
 	List<MemberVO> getUserList(MemberVO user);
 
 	boolean changeAuthority(MemberVO member, MemberVO user);
+
+	void insertAutoLogin(MemberVO user);
 }

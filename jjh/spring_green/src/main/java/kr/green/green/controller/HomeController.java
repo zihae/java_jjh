@@ -49,11 +49,15 @@ public class HomeController {
 	public ModelAndView loginPost(ModelAndView mv, MemberVO user) {
 		
 		MemberVO loginUser = memberService.login(user);
-		mv.addObject("user",loginUser);
+		
+		
 		if(loginUser == null) 
 			mv.setViewName("redirect:/login");
-		else 
+		else {
+			loginUser.setMe_auto_login(user.getMe_auto_login());
+			mv.addObject("user",loginUser);
 			mv.setViewName("redirect:/");
+		} 
 		return mv;
 	}
 	@RequestMapping(value = "/logout")
