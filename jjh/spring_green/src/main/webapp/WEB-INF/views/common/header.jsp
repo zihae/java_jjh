@@ -33,7 +33,13 @@
 	      	<li class="nav-item">
 	        	<a class="nav-link" href="<%=request.getContextPath()%>/logout">로그아웃</a>
 	      	</li> 
-      	</c:if>   
+      	</c:if> 
+      	<!-- ne: !=, eq: == -->
+      	<c:if test="${user ne null && user.me_authority eq 'super admin' }">
+      	<li class="nav-item">
+	        	<a class="nav-link" href="<%=request.getContextPath()%>/admin/member/modify">회원관리</a>
+	      </li> 
+      	</c:if>  
     	</ul>
 		</div> 
 	</div> 

@@ -1,5 +1,7 @@
 package kr.green.green.service;
 
+import java.util.List;
+
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -156,6 +158,35 @@ public class MemberServiceImp implements MemberService {
         System.out.println(e);
         return false;
     }
+		return true;
+	}
+
+	@Override
+	public List<MemberVO> getUserList(MemberVO user) {
+		if(user == null)
+			return null;
+		if(!user.getMe_authority().equals("super admin"))
+			return null;
+		return memberDao.selectMemberList();
+	}
+
+	@Override
+	public boolean changeAuthority(MemberVO member, MemberVO user) {
+		if(member == null || user == null)
+			return false;
+		if(!user.getMe_authority().equals("super admin"))
+			return false;
+		//바꾸려는 권한이 슈퍼 관리자인 경우
+		if(member.getMe_authority().equals("super admin"))
+			return false;
+		//아이디와 일치하는 회원 정보를 가져옴
+		MemberVO dbUser = memberDao.selectMember(member.getMe_id());
+		//해당 회원의 권한이 슈퍼 관리자인지 아닌지 확인
+		//슈퍼 관리자라면 false를 리턴
+		if(dbUser == null || dbUser.getMe_authority().equals("super admin"))
+			return false;
+		dbUser.setMe_authority(member.getMe_authority());
+		memberDao.updateMember(dbUser);
 		return true;
 	}
 	
