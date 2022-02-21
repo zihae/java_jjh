@@ -64,19 +64,19 @@ public class HomeController {
 		return mv;
 	}
 	@RequestMapping(value = "/logout")
-	public ModelAndView logout(ModelAndView mv, HttpSession session) {
-		MemberVO user = (MemberVO)session.getAttribute("user");
-		session.removeAttribute("user");
-		user.setMe_session_limit(new Date());
-		user.setMe_session_id("none");
-		memberService.insertAutoLogin(user);
-		mv.setViewName("redirect:/");
-		return mv;
-	}
+		public ModelAndView logout(ModelAndView mv, HttpSession session) {
+			MemberVO user = (MemberVO)session.getAttribute("user");
+			session.removeAttribute("user");
+			user.setMe_session_limit(new Date());
+			user.setMe_session_id("none");
+			memberService.insertAutoLogin(user);
+			mv.setViewName("redirect:/");
+			return mv;
+		}
 	@ResponseBody
 	@RequestMapping(value = "/idcheck")
-	public String idcheck(String me_id) {
-	return memberService.idCheck(me_id);
+		public String idcheck(String me_id) {
+		return memberService.idCheck(me_id);
 	}
 	
 	@RequestMapping(value = "/mypage")
